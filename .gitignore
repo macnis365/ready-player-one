@@ -1,16 +1,7 @@
 # Compiled class file
 *.class
 
-# Log file
-*.log
-
-# User-specific stuff
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/usage.statistics.xml
-.idea/**/dictionaries
-.idea/**/
-.idea/libraries/**
+target/
 
 # Generated files
-.idea/**/contentModel.xml
+.idea/
