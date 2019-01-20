@@ -2,6 +2,7 @@ package com.auto.app.com.auto.app.places;
 
 import com.auto.app.com.auto.app.tools.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,6 +17,7 @@ public class Room implements Location {
         this.name = name;
         this.ambience = ambience;
         this.description = description;
+        this.artifacts = new ArrayList<>();
     }
 
     public String getName() {
@@ -84,5 +86,30 @@ public class Room implements Location {
     @Override
     public List<Room> connectingRooms() {
         return connectingRooms;
+    }
+
+    @Override
+    public String describeLocation() {
+        return description;
+    }
+
+    @Override
+    public Room goNorth() {
+        return connectingRooms.get(1);
+    }
+
+    @Override
+    public Room goSouth() {
+        return connectingRooms.get(2);
+    }
+
+    @Override
+    public Room goWest() {
+        return connectingRooms.get(3);
+    }
+
+    @Override
+    public Room goEast() {
+        return connectingRooms.get(4);
     }
 }

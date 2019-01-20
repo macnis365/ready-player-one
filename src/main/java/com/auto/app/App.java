@@ -1,37 +1,48 @@
 package com.auto.app;
 
 import com.auto.app.com.auto.app.characters.HumanPlayer;
+import com.auto.app.com.auto.app.places.Room;
 import com.auto.app.com.auto.app.tools.Item;
 import com.auto.app.com.auto.app.tools.Utensil;
 
 import java.util.Scanner;
 
 /**
- * Hello world!
+ *
  */
 public class App {
+
+    public static final String NEWLINE = "\n";
+    private static final String INTRODUCTION = "You Head off to Dungeon" + NEWLINE + "The dungeon door slams shut behind you. You are in a maze of twisty little passage all alike" + NEWLINE + "You see a dark doorway to the north" + NEWLINE + "A human skull lies in the corner";
+
+    private static final String SYSTEM_RESPONSE_DIALOGUE = "I have this options to explore";
+
     public static void main(String[] args) {
         System.out.println("Welcome to Ready Player One......");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your character name: ");
+
+        Room room1 = new Room("Room1", "vast, dark", "You Head off to Dungeon" + NEWLINE + "The dungeon door slams shut behind you. You are in a maze of twisty little passage all alike" + NEWLINE + "You see a dark doorway to the north" + NEWLINE + "A human skull lies in the corner");
+        Item skull = new Utensil("Skull", "The skull appears blackened and chared. It smell of sulfur.", 10);
+        room1.getArtifacts().add(skull);
         HumanPlayer player = new HumanPlayer(scanner.next());
-        introduction();
-        System.out.println("\nYour Choice: ");
+        player.setCurrentLocation(room1);
+        System.out.println(player.checkout());
+
+        System.out.println(SYSTEM_RESPONSE_DIALOGUE);
         System.out.println("1. examine skull");
         System.out.println("2. go north");
-        int optionChosen = scanner.nextInt();
 
+        int optionChosen = scanner.nextInt();
         if (1 == optionChosen) {
             System.out.println("You took the skull.");
-            System.out.println("The skull appears blackened and chared. It smell of sulfur.");
+            System.out.println(player.examine(room1.getArtifacts().get(0)));
             System.out.println("Do you want to take it with you?");
             System.out.println("1. Yes");
             System.out.println("2. No");
             optionChosen = scanner.nextInt();
             if (1 == optionChosen) {
                 System.out.println("You add skull to your backpack");
-                Item skull = new Utensil("Skull", "The skull appears blackened and chared. It smell of sulfur.", 10);
-                player.getBackpack().add(skull);
             }
         }
 
@@ -77,9 +88,6 @@ public class App {
     }
 
     private static void introduction() {
-        System.out.println("You Head off to Dungeon");
-        System.out.println("The dungeon door slams shut behind you. You are in a maze of twisty little passage all alike");
-        System.out.println("You see a dark doorway to the north");
-        System.out.println("A human skull lies in the corner");
+        System.out.println(INTRODUCTION);
     }
 }
