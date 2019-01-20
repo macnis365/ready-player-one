@@ -13,6 +13,12 @@ public class Room implements Location {
     List<Item> artifacts;
     private List<Room> connectingRooms;
 
+    public Room (String name, String description){
+        this.name = name;
+        this.description = description;
+        this.artifacts = new ArrayList<>();
+    }
+
     public Room(String name, String ambience, String description) {
         this.name = name;
         this.ambience = ambience;
@@ -90,7 +96,7 @@ public class Room implements Location {
 
     @Override
     public String describeLocation() {
-        return description;
+        return (null != ambience ? ambience+"\n" : "") + description;
     }
 
     @Override
