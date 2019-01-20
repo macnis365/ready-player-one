@@ -7,5 +7,7 @@ interface Inventory {
 
     public boolean remove(Item item);
 
+    public boolean contains(Item item);
+
     public String show();
 }

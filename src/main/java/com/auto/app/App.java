@@ -33,7 +33,7 @@ public class App {
             if (1 == optionChosen) {
                 System.out.println("You add skull to your backpack");
                 Skull skull = new Skull("test");
-                player.getBackpack().getItems().add(skull);
+                player.getBackpack().add(skull);
             }
         }
 
@@ -65,7 +65,7 @@ public class App {
                     System.out.println("1. go steps");
                     optionChosen = scanner.nextInt();
                     if (1 == optionChosen) {
-                        if (player.getBackpack().getItems().contains(new Skull("test"))) {
+                        if (player.getBackpack().contains(new Skull("test"))) {
                             System.out.println("You walk up the steps and open the door. You are blinded by the sun in you face. You have escaped the dungeon! You are free!");
                             System.exit(0);
                         }

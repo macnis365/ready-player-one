@@ -1,7 +1,6 @@
 package com.auto.app.com.auto.app.tools;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Backpack implements Inventory {
@@ -22,14 +21,6 @@ public class Backpack implements Inventory {
         items = new HashSet<Item>();
     }
 
-    public Set<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<Item> items) {
-        this.items = items;
-    }
-
     @Override
     public void add(Item item) {
         items.add(item);
@@ -37,6 +28,11 @@ public class Backpack implements Inventory {
 
     @Override
     public boolean remove(Item item) {
+        return contains(item);
+    }
+
+    @Override
+    public boolean contains(Item item) {
         if (items.contains(item)) {
             return items.remove(item);
         }
