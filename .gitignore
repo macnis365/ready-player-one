@@ -1,7 +1,8 @@
-# Compiled class file
-*.class
-
-target/
-
-# Generated files
+# Intellij
 .idea/
+*.iml
+*.iws
+
+# Maven
+log/
+target/
