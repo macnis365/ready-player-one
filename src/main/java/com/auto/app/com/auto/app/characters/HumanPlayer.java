@@ -3,9 +3,6 @@ package com.auto.app.com.auto.app.characters;
 import com.auto.app.com.auto.app.tools.Backpack;
 import com.auto.app.com.auto.app.tools.Item;
 
-import java.util.Collection;
-import java.util.Collections;
-
 public class HumanPlayer implements Player {
 
     private final String name;
@@ -38,7 +35,8 @@ public class HumanPlayer implements Player {
         this.backpack = backpack;
     }
 
-    public String examine(Collection<Item> item) {
-        return "";
+    @Override
+    public String examine(Item item) {
+        return item.describe();
     }
 }

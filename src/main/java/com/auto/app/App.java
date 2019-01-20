@@ -15,10 +15,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your character name: ");
         HumanPlayer player = new HumanPlayer(scanner.next());
-        System.out.println("You Head off to Dungeon");
-        System.out.println("The dungeon door slams shut behind you. You are in a maze of twisty little passage all alike");
-        System.out.println("You see a dark doorway to the north");
-        System.out.println("A human skull lies in the corner");
+        introduction();
         System.out.println("\nYour Choice: ");
         System.out.println("1. examine skull");
         System.out.println("2. go north");
@@ -77,5 +74,12 @@ public class App {
 
         }
 
+    }
+
+    private static void introduction() {
+        System.out.println("You Head off to Dungeon");
+        System.out.println("The dungeon door slams shut behind you. You are in a maze of twisty little passage all alike");
+        System.out.println("You see a dark doorway to the north");
+        System.out.println("A human skull lies in the corner");
     }
 }
