@@ -1,7 +1,8 @@
 package com.auto.app;
 
 import com.auto.app.com.auto.app.characters.HumanPlayer;
-import com.auto.app.com.auto.app.tools.Skull;
+import com.auto.app.com.auto.app.tools.Item;
+import com.auto.app.com.auto.app.tools.Utensil;
 
 import java.util.Scanner;
 
@@ -32,7 +33,7 @@ public class App {
             optionChosen = scanner.nextInt();
             if (1 == optionChosen) {
                 System.out.println("You add skull to your backpack");
-                Skull skull = new Skull("test");
+                Item skull = new Utensil("Skull", "The skull appears blackened and chared. It smell of sulfur.", 10);
                 player.getBackpack().add(skull);
             }
         }
@@ -65,7 +66,7 @@ public class App {
                     System.out.println("1. go steps");
                     optionChosen = scanner.nextInt();
                     if (1 == optionChosen) {
-                        if (player.getBackpack().contains(new Skull("test"))) {
+                        if (player.getBackpack().contains(new Utensil("Skull", "The skull appears blackened and chared. It smell of sulfur.", 10))) {
                             System.out.println("You walk up the steps and open the door. You are blinded by the sun in you face. You have escaped the dungeon! You are free!");
                             System.exit(0);
                         }

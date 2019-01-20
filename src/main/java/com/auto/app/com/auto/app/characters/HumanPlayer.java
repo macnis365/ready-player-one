@@ -15,7 +15,7 @@ public class HumanPlayer implements Player {
     public HumanPlayer(String name) {
         this.name = name;
         this.score = new Score();
-        backpack = new Backpack("backpack");
+        backpack = new Backpack();
     }
 
     public String getName() {

@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Backpack implements Inventory {
-    private String name;
     private Set<Item> items;
     private String description;
 
@@ -16,8 +15,7 @@ public class Backpack implements Inventory {
         this.description = description;
     }
 
-    public Backpack(String name) {
-        this.name = name;
+    public Backpack() {
         items = new HashSet<Item>();
     }
 
