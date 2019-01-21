@@ -4,6 +4,7 @@ import com.auto.app.com.auto.app.characters.HumanPlayer;
 import com.auto.app.com.auto.app.places.Room;
 import com.auto.app.com.auto.app.tools.Item;
 import com.auto.app.com.auto.app.tools.Utensil;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import java.util.Scanner;
 
@@ -26,8 +27,8 @@ public class App {
         room1.getArtifacts().add(skull);
         HumanPlayer player = new HumanPlayer(scanner.next());
         player.setCurrentLocation(room1);
-        System.out.println(player.checkout());
 
+        System.out.println(player.checkout());
         System.out.println(SYSTEM_RESPONSE_DIALOGUE);
         System.out.println("1. examine skull");
         System.out.println("2. go north");
@@ -42,6 +43,7 @@ public class App {
             optionChosen = scanner.nextInt();
             if (1 == optionChosen) {
                 System.out.println("You add skull to your backpack");
+                player.collect(room1.getArtifacts().get(0));
             }
         }
 
@@ -53,23 +55,21 @@ public class App {
 
             Room room2 = new Room("Room2", "You are in a vast, dark hall.", "There is a door to the south back to dungeon entrance." + NEWLINE + "A glowing orb floats in mid air," + NEWLINE + "In the center of the room on a raised platform there is a blackend, magic scarred altar.");
             System.out.println("You head off to the north");
-
+            Item altar = new Utensil("Altar", "There is a drawing of a skull scratched into the soot on the surface of the altar.", 20);
+            room2.getArtifacts().add(altar);
             player.setCurrentLocation(room2);
             System.out.println(player.checkout());
             System.out.println("1. examine altar");
             System.out.println("2. go back to earlier visited room");
             optionChosen = scanner.nextInt();
             if (1 == optionChosen) {
-                System.out.println("There is a drawing of a skull scratched into the soot on the surface of the altar.");
+                System.out.println(room2.getArtifacts().get(0).describe());
                 System.out.println("1. use the altar");
-                System.out.println("2. dont know what to do?");
+                System.out.println("2. don't know what to do?");
                 optionChosen = scanner.nextInt();
                 if (1 == optionChosen) {
-                    System.out.println("Suddenly, there is a deep rumbling sound. Dust fills the air.");
-                    System.out.println("There is a door to the south back to the starting room.");
-                    System.out.println("A secret passage has opened to the west.");
-                    System.out.println("A glowing orb floats in mid air.");
-                    System.out.println("In the center of the room on a raised platform there is a blackened, magic scarred altar.");
+                    Room room3 = new Room("room3", "Suddenly, there is a deep rumbling sound. Dust fills the air." + NEWLINE + "There is a door to the south back to the starting room." + NEWLINE + "A secret passage has opened to the west." + NEWLINE + "A glowing orb floats in mid air." + NEWLINE + "In the center of the room on a raised platform there is a blackened, magic scarred altar.");
+                    System.out.println(room3.describeLocation());
 
                     System.out.println("1. go steps");
                     optionChosen = scanner.nextInt();

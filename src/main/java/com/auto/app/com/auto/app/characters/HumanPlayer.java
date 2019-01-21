@@ -10,6 +10,7 @@ public class HumanPlayer implements Player {
     private Score score;
     private Backpack backpack;
 
+
     public Location getCurrentLocation() {
         return currentLocation;
     }
@@ -49,6 +50,11 @@ public class HumanPlayer implements Player {
     @Override
     public String examine(Item item) {
         return item.describe();
+    }
+
+    @Override
+    public void collect(Item item) {
+        this.backpack.add(item);
     }
 
     public String checkout() {
