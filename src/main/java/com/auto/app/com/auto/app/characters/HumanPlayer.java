@@ -10,11 +10,10 @@ public class HumanPlayer implements Player, PlayerItemAction {
     private Score score;
     private Backpack backpack;
     private Location currentLocation;
+    private Backpack backPack;
 
     public HumanPlayer(String name) {
         this.name = name;
-        this.score = new Score();
-        backpack = new Backpack();
     }
 
     public String getName() {
@@ -62,5 +61,9 @@ public class HumanPlayer implements Player, PlayerItemAction {
 
     public String checkout() {
         return this.currentLocation.describeLocation();
+    }
+
+    public void setBackPack(Backpack backPack) {
+        this.backPack = backPack;
     }
 }
