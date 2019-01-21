@@ -4,8 +4,8 @@ import com.auto.app.com.auto.app.characters.HumanPlayer;
 import com.auto.app.com.auto.app.places.Room;
 import com.auto.app.com.auto.app.tools.Item;
 import com.auto.app.com.auto.app.tools.Utensil;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -30,19 +30,21 @@ public class App {
 
         System.out.println(player.checkout());
         System.out.println(SYSTEM_RESPONSE_DIALOGUE);
+
         System.out.println("1. examine skull");
         System.out.println("2. go north");
 
         int optionChosen = scanner.nextInt();
         if (1 == optionChosen) {
-            System.out.println("You took the skull.");
-            System.out.println(player.examine(room1.getArtifacts().get(0)));
+            Item item = room1.getArtifacts().get(0);
+            System.out.println(player.lift(item));
+            System.out.println(player.examine(item));
             System.out.println("Do you want to take it with you?");
             System.out.println("1. Yes");
             System.out.println("2. No");
             optionChosen = scanner.nextInt();
             if (1 == optionChosen) {
-                System.out.println("You add skull to your backpack");
+                System.out.println("You added skull to your backpack");
                 player.collect(room1.getArtifacts().get(0));
             }
         }

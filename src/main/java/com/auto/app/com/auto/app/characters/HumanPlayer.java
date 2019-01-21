@@ -4,21 +4,11 @@ import com.auto.app.com.auto.app.places.Location;
 import com.auto.app.com.auto.app.tools.Backpack;
 import com.auto.app.com.auto.app.tools.Item;
 
-public class HumanPlayer implements Player {
+public class HumanPlayer implements Player, PlayerItemAction {
 
     private final String name;
     private Score score;
     private Backpack backpack;
-
-
-    public Location getCurrentLocation() {
-        return currentLocation;
-    }
-
-    public void setCurrentLocation(Location currentLocation) {
-        this.currentLocation = currentLocation;
-    }
-
     private Location currentLocation;
 
     public HumanPlayer(String name) {
@@ -47,6 +37,14 @@ public class HumanPlayer implements Player {
         this.backpack = backpack;
     }
 
+    public Location getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(Location currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
     @Override
     public String examine(Item item) {
         return item.describe();
@@ -55,6 +53,11 @@ public class HumanPlayer implements Player {
     @Override
     public void collect(Item item) {
         this.backpack.add(item);
+    }
+
+    @Override
+    public String lift(Item item) {
+        return "You took the " + item.toString();
     }
 
     public String checkout() {

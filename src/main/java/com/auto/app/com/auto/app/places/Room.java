@@ -1,19 +1,23 @@
 package com.auto.app.com.auto.app.places;
 
 import com.auto.app.com.auto.app.tools.Item;
+import com.auto.app.com.auto.app.tools.Utensil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Room implements Location {
     private String name;
     private String description;
     private String ambience;
-    List<Item> artifacts;
-    private List<Room> connectingRooms;
 
-    public Room (String name, String description){
+    List<Item> artifacts;
+    private Room nextRoom;
+    private Room previousRoom;
+
+    public Room(String name, String description) {
         this.name = name;
         this.description = description;
         this.artifacts = new ArrayList<>();
@@ -34,22 +38,6 @@ public class Room implements Location {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getAmbience() {
-        return ambience;
-    }
-
-    public void setAmbience(String ambience) {
-        this.ambience = ambience;
-    }
-
     public List<Item> getArtifacts() {
         return artifacts;
     }
@@ -58,30 +46,44 @@ public class Room implements Location {
         this.artifacts = artifacts;
     }
 
-    public List<Room> getConnectingRooms() {
-        return connectingRooms;
+    public Room getNextRoom() {
+        return nextRoom;
     }
 
-    public void setConnectingRooms(List<Room> connectingRooms) {
-        this.connectingRooms = connectingRooms;
+    public void setNextRoom(Room nextRoom) {
+        this.nextRoom = nextRoom;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Room room = (Room) o;
-        return Objects.equals(name, room.name) &&
-                Objects.equals(description, room.description) &&
-                Objects.equals(ambience, room.ambience) &&
-                Objects.equals(artifacts, room.artifacts) &&
-                Objects.equals(connectingRooms, room.connectingRooms);
+    public Room getPreviousRoom() {
+        return previousRoom;
+    }
+
+    public void setPreviousRoom(Room previousRoom) {
+        this.previousRoom = previousRoom;
     }
 
     @Override
-    public int hashCode() {
+    public String describeLocation() {
+        return (null != ambience ? ambience + "\n" : "") + description;
+    }
 
-        return Objects.hash(name, description, ambience, artifacts, connectingRooms);
+    public String itemListOption() {
+        StringBuilder builder = new StringBuilder();
+        for (Item item : artifacts) {
+            int i = 1;
+            Utensil utensil = (Utensil) item;
+            builder.append(1).append(" - ").append(utensil.getName()).append("\n");
+        }
+        return builder.toString();
+    }
+
+    public String roomOptions() {
+        StringBuilder builder = new StringBuilder();
+        if(null != nextRoom){
+            builder.append("1. go to next room").append("\n").append("2. back to provious room");
+        }
+
+        return builder.toString();
     }
 
     @Override
@@ -89,33 +91,5 @@ public class Room implements Location {
         return name;
     }
 
-    @Override
-    public List<Room> connectingRooms() {
-        return connectingRooms;
-    }
 
-    @Override
-    public String describeLocation() {
-        return (null != ambience ? ambience+"\n" : "") + description;
-    }
-
-    @Override
-    public Room goNorth() {
-        return connectingRooms.get(1);
-    }
-
-    @Override
-    public Room goSouth() {
-        return connectingRooms.get(2);
-    }
-
-    @Override
-    public Room goWest() {
-        return connectingRooms.get(3);
-    }
-
-    @Override
-    public Room goEast() {
-        return connectingRooms.get(4);
-    }
 }
