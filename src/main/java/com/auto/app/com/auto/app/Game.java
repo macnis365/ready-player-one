@@ -28,14 +28,8 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your character name: ");
         HumanPlayer player = new HumanPlayer(scanner.next());
+
         createGame(player);
-        Room room = (Room) player.getCurrentLocation();
-        do {
-            System.out.println(room.describeLocation());
-            room = room.getNextRoom();
-            player.setCurrentLocation(room);
-            System.out.println("");
-        } while (room != null);
 
 //        System.out.println(player.checkout());
         System.out.println(SYSTEM_RESPONSE_DIALOGUE);
@@ -53,7 +47,7 @@ public class Game {
                 if (input == 1) {
 //                    list item,
                 } else if (input == 2) {
-//                    go back
+//                    go back*
                 } else if (input == 3) {
 //                    go forword
                 } else {
@@ -70,7 +64,7 @@ public class Game {
         }
     }
 
-    private static void createGame(HumanPlayer player) {
+    public static void createGame(HumanPlayer player) {
         Room room1 = new Room("Room1", "You Head off to Dungeon" + NEWLINE + "The dungeon door slams shut behind you. You are in a maze of twisty little passage all alike" + NEWLINE + "You see a dark doorway to the north" + NEWLINE + "A human skull lies in the corner");
         Item skull = new Utensil("Skull", "The skull appears blackened and chared. It smell of sulfur.", 10);
         room1.getArtifacts().add(skull);
