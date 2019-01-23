@@ -26,19 +26,13 @@ public class GameWindow {
         themeStart = true;
         themes = loadTheme();
         while (themeStart) {
+            System.out.println("List of Themes:");
             for (int index = 0; index < themes.size(); index++) {
-                System.out.println("List of Themes:");
                 System.out.println(index + 1 + " - " + themes.get(index).getName());
             }
-            System.out.println("Please choose any:");
             int userChoice = scanner.nextInt();
-            Theme userChoosenTheme = themes.get(userChoice - 1);
-            System.out.println("Choose options ");
-            System.out.println("1. To Create your character");
-            System.out.println("2. load game");
-            int choice = scanner.nextInt();
-
-            if ("Dungeon and Dragaon".equals(userChoosenTheme.getName())) {
+            if (userChoice > 0 && themes.size() >= userChoice &&
+                    "Dungeon and Dragon".equals(themes.get(userChoice - 1).getName())) {
                 ThemCreationContext context = new ThemCreationContext();
                 context.setThemeCreatoinStrategy(new DungeonCreationStrategy());
                 Theme dungeonTheme = context.createTheme(scanner);
@@ -55,7 +49,7 @@ public class GameWindow {
     }
 
     public List<Theme> loadTheme() {
-        Theme theme1 = new Theme.ThemeBuilder().buildWithName("Dungeon and Dragaon").build();
+        Theme theme1 = new Theme.ThemeBuilder().buildWithName("Dungeon and Dragon").build();
         Theme theme2 = new Theme.ThemeBuilder().buildWithName("Super Mario").build();
         themes.add(theme1);
         themes.add(theme2);
