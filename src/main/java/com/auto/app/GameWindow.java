@@ -1,10 +1,10 @@
 package com.auto.app;
 
-import com.auto.app.com.auto.game.Theme;
-import com.auto.app.com.auto.game.dungeon.DungeonCreationStrategy;
-import com.auto.app.com.auto.game.dungeon.DungeonPlayStrategy;
-import com.auto.app.com.auto.game.themestrategy.ThemCreationContext;
-import com.auto.app.com.auto.game.themestrategy.ThemePlayContext;
+import com.auto.app.game.Theme;
+import com.auto.app.game.dungeon.DungeonCreationStrategy;
+import com.auto.app.game.dungeon.DungeonPlayStrategy;
+import com.auto.app.game.themestrategy.ThemCreationContext;
+import com.auto.app.game.themestrategy.ThemePlayContext;
 
 import java.util.ArrayList;
 import java.util.List;
