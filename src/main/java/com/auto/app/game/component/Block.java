@@ -1,4 +1,4 @@
-package com.auto.app.game;
+package com.auto.app.game.component;
 
 public class Block {
 
@@ -94,7 +94,7 @@ public class Block {
             return this;
         }
 
-        public BlockBuilder withisLocked(boolean isLocked) {
+        public BlockBuilder withIsLocked(boolean isLocked) {
             this.isLocked = isLocked;
             return this;
         }

@@ -1,7 +1,7 @@
 package com.auto.app.game.dungeon;
 
-import com.auto.app.game.*;
-import com.auto.app.game.Character;
+import com.auto.app.game.component.*;
+import com.auto.app.game.component.Character;
 import com.auto.app.game.themestrategy.ThemeCreatoinStrategy;
 
 import java.util.HashMap;
@@ -40,8 +40,8 @@ public class DungeonCreationStrategy implements ThemeCreatoinStrategy {
 
     public Block createBlock(Scanner input) {
         Block.BlockBuilder blockBuilder = new Block.BlockBuilder();
-        Block finalBlock = new Block.BlockBuilder().withName("3rd Room").withisLocked(true).withDialogue(new Dialogue.DialogueBuilder().buildWithDirection(ROOM3_DIRECTION).buildWithIntroduction(ROOM3_INTRODUCTION).build()).build();
-        Block secondBlock = new Block.BlockBuilder().withName("2 Room").withisLocked(true).withNpcPlayers(new NonPlayer.NpcPlayerBuilder().buildWithName("zombie").buildWithIsThreatFlag(true).buildWithPoints(20).build()).withNeighborBlocks(finalBlock).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM2_INTRODUCTION).buildWithDirection(ROOM2_DIRECTION).build()).build();
+        Block finalBlock = new Block.BlockBuilder().withName("3rd Room").withIsLocked(true).withDialogue(new Dialogue.DialogueBuilder().buildWithDirection(ROOM3_DIRECTION).buildWithIntroduction(ROOM3_INTRODUCTION).build()).build();
+        Block secondBlock = new Block.BlockBuilder().withName("2 Room").withIsLocked(true).withNpcPlayers(new NonPlayer.NpcPlayerBuilder().buildWithName("zombie").buildWithIsThreatFlag(true).buildWithPoints(20).build()).withNeighborBlocks(finalBlock).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM2_INTRODUCTION).buildWithDirection(ROOM2_DIRECTION).build()).build();
         return blockBuilder.withName("1 Room").withItem(new Item.ItemBuilder().withName("Skull").withPoints(20).buildWithDescription(SKULL_DESCRIPTION).build()).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM1_INTRODUCTION).buildWithDirection(ROOM1_DIRECTION).build()).withNeighborBlocks(secondBlock).build();
     }
 

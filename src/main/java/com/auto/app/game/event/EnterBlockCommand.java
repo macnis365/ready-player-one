@@ -1,7 +1,7 @@
 package com.auto.app.game.event;
 
-import com.auto.app.game.Block;
-import com.auto.app.game.Player;
+import com.auto.app.game.component.Block;
+import com.auto.app.game.component.Player;
 
 public class EnterBlockCommand implements Command {
     Player player;

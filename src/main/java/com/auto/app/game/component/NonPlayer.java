@@ -1,4 +1,4 @@
-package com.auto.app.game;
+package com.auto.app.game.component;
 
 public class NonPlayer extends Character {
     private boolean isThreat;

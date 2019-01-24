@@ -1,6 +1,6 @@
 package com.auto.app;
 
-import com.auto.app.game.Theme;
+import com.auto.app.game.component.Theme;
 import com.auto.app.game.dungeon.DungeonCreationStrategy;
 import com.auto.app.game.dungeon.DungeonPlayStrategy;
 import com.auto.app.game.themestrategy.ThemCreationContext;

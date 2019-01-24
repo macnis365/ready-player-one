@@ -1,8 +1,8 @@
 package com.auto.app.game.event;
 
-import com.auto.app.game.Block;
-import com.auto.app.game.Item;
-import com.auto.app.game.Player;
+import com.auto.app.game.component.Block;
+import com.auto.app.game.component.Item;
+import com.auto.app.game.component.Player;
 
 public class CollectCommand implements Command {
 

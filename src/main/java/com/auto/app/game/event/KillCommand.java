@@ -1,8 +1,8 @@
 package com.auto.app.game.event;
 
-import com.auto.app.game.Block;
-import com.auto.app.game.NonPlayer;
-import com.auto.app.game.Player;
+import com.auto.app.game.component.Block;
+import com.auto.app.game.component.NonPlayer;
+import com.auto.app.game.component.Player;
 
 public class KillCommand implements Command {
     Player player;

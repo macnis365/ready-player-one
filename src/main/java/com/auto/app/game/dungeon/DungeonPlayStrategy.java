@@ -1,8 +1,7 @@
 package com.auto.app.game.dungeon;
 
-import com.auto.app.game.Block;
-import com.auto.app.game.Player;
-import com.auto.app.game.Theme;
+import com.auto.app.game.component.Player;
+import com.auto.app.game.component.Theme;
 import com.auto.app.game.event.CollectCommand;
 import com.auto.app.game.event.Command;
 import com.auto.app.game.event.EnterBlockCommand;
