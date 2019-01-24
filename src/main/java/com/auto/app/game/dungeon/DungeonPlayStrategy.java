@@ -45,10 +45,16 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
             command.execute();
             if (player.getScore() > 20) {
                 System.out.println(player.name + "wins the game with score " + theme.getWinScore());
+                System.out.println();
+                System.out.println("Going back to menu.");
+                System.out.println();
                 break;
             }
             if (player.getHealth() == 0) {
                 System.out.println("Player one got killed! better luck next time");
+                System.out.println();
+                System.out.println("Going back to menu.");
+                System.out.println();
                 break;
             }
         }
