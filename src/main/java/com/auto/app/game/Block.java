@@ -6,7 +6,6 @@ public class Block {
     private Block neighborBlocks;
     private Item items;
     private NonPlayer nonPlayers;
-    private String story;
     private Dialogue dialogue;
 
     private Block() {
@@ -45,20 +44,8 @@ public class Block {
         this.nonPlayers = nonPlayers;
     }
 
-    public String getStory() {
-        return story;
-    }
-
-    public void setStory(String story) {
-        this.story = story;
-    }
-
     public Dialogue getDialogue() {
         return dialogue;
-    }
-
-    public void setDialogue(Dialogue dialogue) {
-        this.dialogue = dialogue;
     }
 
     public static class BlockBuilder {
@@ -66,7 +53,6 @@ public class Block {
         private Block neighborBlocks;
         private Item items;
         private NonPlayer nonPlayers;
-        private String story;
         private Dialogue dialogue;
 
         public BlockBuilder() {
@@ -93,11 +79,6 @@ public class Block {
             return this;
         }
 
-        public BlockBuilder withStory(String story) {
-            this.story = story;
-            return this;
-        }
-
         public BlockBuilder withDialogue(Dialogue dialogue) {
             this.dialogue = dialogue;
             return this;
@@ -109,7 +90,6 @@ public class Block {
             block.items = this.items;
             block.nonPlayers = this.nonPlayers;
             block.neighborBlocks = this.neighborBlocks;
-            block.story = this.story;
             block.dialogue = this.dialogue;
             return block;
         }
