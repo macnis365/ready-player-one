@@ -23,7 +23,7 @@ public class SaveCommandTest {
         Block secondBlock = new Block.BlockBuilder().withName("2 Room").withIsLocked(true).withNpcPlayers(new NonPlayer.NpcPlayerBuilder().withName("zombie").withIsThreatFlag(true).withPoints(10).build()).withNeighborBlocks(finalBlock).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM2_INTRODUCTION).buildWithDirection(ROOM2_DIRECTION).build()).build();
         Block rootBlock = blockBuilder.withName("1 Room").withItem(new Item.ItemBuilder().withName("Skull").withPoints(10).withDescription(SKULL_DESCRIPTION).build()).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM1_INTRODUCTION).buildWithDirection(ROOM1_DIRECTION).build()).withNeighborBlocks(secondBlock).build();
 
-        Player player = new Player.PlayerBuilder().withIsAlive(true).withCurrentPosition(rootBlock).withScore(0).withHealth(100).withName("Dave").build();
+        Player player = new Player.PlayerBuilder().withCurrentPosition(rootBlock).withScore(0).withHealth(100).withName("Dave").withIsAlive(true).build();
 
         HashMap<Integer, String> options = new HashMap<>();
         options.put(8, "go to neighbor block.");
