@@ -7,7 +7,7 @@ public class Block {
     private Item items;
     private NonPlayer nonPlayers;
     private Dialogue dialogue;
-    private boolean isVisited;
+    private boolean isLocked;
 
     private Block() {
 
@@ -49,12 +49,21 @@ public class Block {
         return dialogue;
     }
 
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
     public static class BlockBuilder {
         private String name;
         private Block neighborBlocks;
         private Item items;
         private NonPlayer nonPlayers;
         private Dialogue dialogue;
+        private boolean isLocked;
 
         public BlockBuilder() {
 
@@ -85,6 +94,11 @@ public class Block {
             return this;
         }
 
+        public BlockBuilder withisLocked(boolean isLocked) {
+            this.isLocked = isLocked;
+            return this;
+        }
+
         public Block build() {
             Block block = new Block();
             block.name = this.name;
@@ -92,6 +106,7 @@ public class Block {
             block.nonPlayers = this.nonPlayers;
             block.neighborBlocks = this.neighborBlocks;
             block.dialogue = this.dialogue;
+            block.isLocked = this.isLocked;
             return block;
         }
     }

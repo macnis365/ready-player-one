@@ -16,8 +16,9 @@ public class KillCommand implements Command {
         Block currentBlock = player.getCurrentPosition();
         NonPlayer nonPlayer = currentBlock.getNonPlayers();
         if (null != nonPlayer) {
-//            remove threat from curentBlock, and add points to player
+            player.setScore(player.getScore() + nonPlayer.getPoints());
             currentBlock.setNonPlayers(null);
+            player.getCurrentPosition().getNeighborBlocks().setLocked(false);
             System.out.println("Eleminated the threat.");
         } else {
             System.out.println("No threat to kill");

@@ -13,7 +13,12 @@ public class EnterBlockCommand implements Command {
     @Override
     public void execute() {
         Block currentBlock = player.getCurrentPosition();
-        if (null != currentBlock && null != currentBlock.getNeighborBlocks()) {
+        if (null != currentBlock.getNeighborBlocks() && currentBlock.getNeighborBlocks().isLocked()) {
+            System.out.println();
+            System.out.println("Room is locked.");
+            System.out.println();
+            return;
+        } else if (null != currentBlock && null != currentBlock.getNeighborBlocks()) {
             player.setCurrentPosition(currentBlock.getNeighborBlocks());
             System.out.println();
             System.out.println();

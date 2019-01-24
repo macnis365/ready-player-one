@@ -16,12 +16,17 @@ public class CollectCommand implements Command {
     public void execute() {
         Block currentBlock = player.getCurrentPosition();
         Item item = currentBlock.getItems();
-        if (null != item) {
+        if (null != currentBlock.getNonPlayers() && currentBlock.getNonPlayers().getIsThreat()) {
+            System.out.println("Creature kill you.");
+            player.setHealth(0);
+        } else if (null != item) {
             player.setItem(item);
             player.setScore(player.getScore() + item.getPoints());
+            player.getCurrentPosition().getNeighborBlocks().setLocked(false);
             System.out.println(item.getDescription());
             System.out.println();
         } else {
+
             System.out.println("No items to collect in here.");
             System.out.println();
 
