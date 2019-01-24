@@ -85,12 +85,12 @@ public class Player extends Character {
             return this;
         }
 
-        public PlayerBuilder buildWithItem(Item item) {
+        public PlayerBuilder withItem(Item item) {
             this.item = item;
             return this;
         }
 
-        public PlayerBuilder buildWithisAlive(boolean alive) {
+        public PlayerBuilder withIsAlive(boolean alive) {
             this.isAlive = alive;
             return this;
         }

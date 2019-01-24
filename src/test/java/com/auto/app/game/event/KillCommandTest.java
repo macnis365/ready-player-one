@@ -14,7 +14,7 @@ public class KillCommandTest {
     @Before
     public void setUp() {
         Block block = new Block.BlockBuilder().withName("test room").withNpcPlayers(new NonPlayer.NpcPlayerBuilder().withName("mario").withIsThreatFlag(true).withPoints(10).build()).build();
-        player = new Player.PlayerBuilder().buildWithisAlive(true).buildWithCurrentPosition(block).buildWithScore(0).buildWithName("Dave").build();
+        player = new Player.PlayerBuilder().withIsAlive(true).buildWithCurrentPosition(block).buildWithScore(0).buildWithName("Dave").build();
         command = new KillCommand(player);
     }
 

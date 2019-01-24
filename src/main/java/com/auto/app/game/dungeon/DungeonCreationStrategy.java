@@ -34,15 +34,15 @@ public class DungeonCreationStrategy implements ThemeCreatoinStrategy {
         Player.PlayerBuilder playerBuilder = new Player.PlayerBuilder();
         playerBuilder.buildWithName(input.next());
         Block rootBlock = createBlock(input);
-        Player player = playerBuilder.buildWithHealth(100).buildWithScore(0).buildWithisAlive(true).buildWithCurrentPosition(rootBlock).build();
+        Player player = playerBuilder.buildWithHealth(100).buildWithScore(0).withIsAlive(true).buildWithCurrentPosition(rootBlock).build();
         return player;
     }
 
     public Block createBlock(Scanner input) {
         Block.BlockBuilder blockBuilder = new Block.BlockBuilder();
         Block finalBlock = new Block.BlockBuilder().withName("3rd Room").withIsLocked(true).withDialogue(new Dialogue.DialogueBuilder().buildWithDirection(ROOM3_DIRECTION).buildWithIntroduction(ROOM3_INTRODUCTION).build()).build();
-        Block secondBlock = new Block.BlockBuilder().withName("2 Room").withIsLocked(true).withNpcPlayers(new NonPlayer.NpcPlayerBuilder().withName("zombie").withIsThreatFlag(true).withPoints(20).build()).withNeighborBlocks(finalBlock).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM2_INTRODUCTION).buildWithDirection(ROOM2_DIRECTION).build()).build();
-        return blockBuilder.withName("1 Room").withItem(new Item.ItemBuilder().withName("Skull").withPoints(20).withDescription(SKULL_DESCRIPTION).build()).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM1_INTRODUCTION).buildWithDirection(ROOM1_DIRECTION).build()).withNeighborBlocks(secondBlock).build();
+        Block secondBlock = new Block.BlockBuilder().withName("2 Room").withIsLocked(true).withNpcPlayers(new NonPlayer.NpcPlayerBuilder().withName("zombie").withIsThreatFlag(true).withPoints(10).build()).withNeighborBlocks(finalBlock).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM2_INTRODUCTION).buildWithDirection(ROOM2_DIRECTION).build()).build();
+        return blockBuilder.withName("1 Room").withItem(new Item.ItemBuilder().withName("Skull").withPoints(10).withDescription(SKULL_DESCRIPTION).build()).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM1_INTRODUCTION).buildWithDirection(ROOM1_DIRECTION).build()).withNeighborBlocks(secondBlock).build();
     }
 
     public Map<Integer, String> createUserOption() {

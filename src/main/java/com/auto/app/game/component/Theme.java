@@ -12,7 +12,6 @@ public class Theme {
     private int winScore;//win condition
     private Character player;
     private Map<Integer, String> userOptions;
-    private List<Command> commands;
 
     public String getName() {
         return name;
@@ -44,14 +43,6 @@ public class Theme {
 
     public void setUserOptions(Map<Integer, String> userOptions) {
         this.userOptions = userOptions;
-    }
-
-    public List<Command> getCommands() {
-        return commands;
-    }
-
-    public void setCommands(List<Command> commands) {
-        this.commands = commands;
     }
 
     public static class ThemeBuilder {

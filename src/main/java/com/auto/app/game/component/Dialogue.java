@@ -11,18 +11,10 @@ public class Dialogue {
         return introduction;
     }
 
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
-    }
-
     public String getDirection() {
         return direction;
     }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
-
+    
     public static class DialogueBuilder {
         private String introduction;
         private String direction;
