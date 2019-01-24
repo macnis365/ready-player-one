@@ -7,6 +7,7 @@ public class Block {
     private Item items;
     private NonPlayer nonPlayers;
     private Dialogue dialogue;
+    private boolean isVisited;
 
     private Block() {
 

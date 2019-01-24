@@ -42,7 +42,7 @@ public class DungeonCreationStrategy implements ThemeCreatoinStrategy {
         Block.BlockBuilder blockBuilder = new Block.BlockBuilder();
         Block finalBlock = new Block.BlockBuilder().withName("3rd Room").withDialogue(new Dialogue.DialogueBuilder().buildWithDirection(ROOM3_DIRECTION).buildWithIntroduction(ROOM3_INTRODUCTION).build()).build();
         Block secondBlock = new Block.BlockBuilder().withName("2 Room").withNpcPlayers(new NonPlayer.NpcPlayerBuilder().buildWithName("zombie").buildWithIsThreatFlag(true).buildWithPoints(20).build()).withNeighborBlocks(finalBlock).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM2_INTRODUCTION).buildWithDirection(ROOM2_DIRECTION).build()).build();
-        return blockBuilder.withName("1 Room").withItem(new Item.ItemBuilder().withName("Skull").withPoints(20).buildWithDescription(SKULL_DESCRIPTION).build()).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM1_INTRODUCTION).buildWithDirection(ROOM1_DIRECTION).buildWithDirection("").build()).withNeighborBlocks(secondBlock).build();
+        return blockBuilder.withName("1 Room").withItem(new Item.ItemBuilder().withName("Skull").withPoints(20).buildWithDescription(SKULL_DESCRIPTION).build()).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM1_INTRODUCTION).buildWithDirection(ROOM1_DIRECTION).build()).withNeighborBlocks(secondBlock).build();
     }
 
     public Map<Integer, String> createUserOption() {

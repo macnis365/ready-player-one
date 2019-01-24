@@ -19,9 +19,9 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
         Player player = (Player) theme.getPlayer();
         Map<Integer, String> options = theme.getUserOptions();
         Command command = null;
+        System.out.println(player.getCurrentPosition().getDialogue().getDirection());
+        System.out.println(player.getCurrentPosition().getDialogue().getIntroduction());
         while (player.getIsAlive()) {
-            Block playerCurrentPosition = player.getCurrentPosition();
-            System.out.println(playerCurrentPosition.getDialogue().getIntroduction());
             for (HashMap.Entry action : options.entrySet()) {
                 System.out.println(action.getKey() + ". " + action.getValue());
             }
