@@ -19,7 +19,7 @@ public class CollectCommand implements Command {
         if (null != item) {
             player.setItem(item);
             player.setScore(player.getScore() + item.getPoints());
-            System.out.println("Item collected.");
+            System.out.println(item.getDescription());
         } else {
             System.out.println("No items to collect in here.");
         }

@@ -15,7 +15,8 @@ public class EnterBlockCommand implements Command {
         Block currentBlock = player.getCurrentPosition();
         if (null != currentBlock && null != currentBlock.getNeighborBlocks()) {
             player.setCurrentPosition(currentBlock.getNeighborBlocks());
-            System.out.println("move to new room.");
+//            System.out.println("move to new room.");
+            System.out.println(currentBlock.getStory());
         } else {
             player.setHealth(0);
         }
