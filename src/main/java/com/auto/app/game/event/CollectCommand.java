@@ -17,7 +17,7 @@ public class CollectCommand implements Command {
         Block currentBlock = player.getCurrentPosition();
         Item item = currentBlock.getItems();
         if (null != currentBlock.getNonPlayers() && currentBlock.getNonPlayers().getIsThreat()) {
-            System.out.println("Creature kill you.");
+            System.out.println("Creature killed you.");
             player.setHealth(0);
         } else if (null != item) {
             player.setItem(item);
@@ -26,10 +26,8 @@ public class CollectCommand implements Command {
             System.out.println(item.getDescription());
             System.out.println();
         } else {
-
             System.out.println("No items to collect in here.");
             System.out.println();
-
         }
     }
 }
