@@ -22,7 +22,9 @@ public class CollectCommand implements Command {
         } else if (null != item) {
             player.setItem(item);
             player.setScore(player.getScore() + item.getPoints());
-            player.getCurrentPosition().getNeighborBlocks().setLocked(false);
+            if (null != player.getCurrentPosition().getNeighborBlocks()) {
+                player.getCurrentPosition().getNeighborBlocks().setLocked(false);
+            }
             System.out.println(item.getDescription());
             System.out.println();
         } else {

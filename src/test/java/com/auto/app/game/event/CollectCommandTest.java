@@ -1,13 +1,14 @@
 package com.auto.app.game.event;
 
 import com.auto.app.game.component.Block;
+import com.auto.app.game.component.Item;
 import com.auto.app.game.component.NonPlayer;
 import com.auto.app.game.component.Player;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class KillCommandTest {
+public class CollectCommandTest {
     Command command;
     Player player;
 
@@ -15,23 +16,23 @@ public class KillCommandTest {
     public void setUp() {
         Block block = new Block.BlockBuilder().withName("test room").withNpcPlayers(new NonPlayer.NpcPlayerBuilder().withName("mario").withIsThreatFlag(true).withPoints(10).build()).build();
         player = new Player.PlayerBuilder().buildWithisAlive(true).buildWithCurrentPosition(block).buildWithScore(0).buildWithName("Dave").build();
-        command = new KillCommand(player);
+        command = new CollectCommand(player);
     }
 
     @Test
-    public void killMonsterFromTheBlock() {
+    public void playerGetsKilledWhileCollectingItem() {
         command.execute();
         Assert.assertNotNull(player);
-        Assert.assertNotNull(player.getCurrentPosition());
-        Assert.assertEquals("Player score changes after killing the monster", 10, player.getScore());
-        Assert.assertNull(player.getCurrentPosition().getNonPlayers());
+        Assert.assertEquals(0, player.getHealth());
     }
 
     @Test
-    public void tryKillWithoutMonsterInTheBlock() {
+    public void playerCollectsItem() {
         player.getCurrentPosition().setNonPlayers(null);
+        player.getCurrentPosition().setItems(new Item.ItemBuilder().withName("Goblet").withPoints(20).withDescription("Goblet of fire").build());
         command.execute();
-        Assert.assertEquals("Player score remains same after killing the monster", 0, player.getScore());
-        Assert.assertNull(player.getCurrentPosition().getNonPlayers());
+        Assert.assertNotNull(player);
+        Assert.assertEquals(20, player.getScore());
+        Assert.assertNotNull(player.getItem());
     }
 }

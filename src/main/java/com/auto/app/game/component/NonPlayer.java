@@ -40,17 +40,17 @@ public class NonPlayer extends Character {
 
         }
 
-        public NpcPlayerBuilder buildWithName(String name) {
+        public NpcPlayerBuilder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public NpcPlayerBuilder buildWithIsThreatFlag(boolean isThreat) {
+        public NpcPlayerBuilder withIsThreatFlag(boolean isThreat) {
             this.isThreat = isThreat;
             return this;
         }
 
-        public NpcPlayerBuilder buildWithPoints(int points) {
+        public NpcPlayerBuilder withPoints(int points) {
             this.points = points;
             return this;
         }

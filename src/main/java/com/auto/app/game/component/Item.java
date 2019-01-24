@@ -52,7 +52,7 @@ public class Item {
             return this;
         }
 
-        public ItemBuilder buildWithDescription(String description) {
+        public ItemBuilder withDescription(String description) {
             this.description = description;
             return this;
         }
