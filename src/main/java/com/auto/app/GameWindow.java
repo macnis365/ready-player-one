@@ -5,6 +5,8 @@ import com.auto.app.game.dungeon.DungeonCreationStrategy;
 import com.auto.app.game.dungeon.DungeonPlayStrategy;
 import com.auto.app.game.themestrategy.ThemCreationContext;
 import com.auto.app.game.themestrategy.ThemePlayContext;
+import com.auto.app.game.util.Color;
+import com.auto.app.game.util.ColorPrintStream;
 
 import java.io.*;
 import java.net.URLDecoder;
@@ -24,11 +26,11 @@ public class GameWindow {
 
     public void initializeTheme() {
         boolean themeStart;
-        System.out.println("========================Game Window=================================");
+        ColorPrintStream.printWithColor("========================Game Window=================================", Color.GREEN, Color.BLACK_BACKGROUND);
         themeStart = true;
         themes = loadTheme();
         while (themeStart) {
-            System.out.println("List of Themes:");
+            ColorPrintStream.printWithColor("List of Themes:", Color.CYAN, Color.BLACK_BACKGROUND);
             for (int index = 0; index < themes.size(); index++) {
                 System.out.println(index + 1 + " - " + themes.get(index).getName());
             }
@@ -37,9 +39,7 @@ public class GameWindow {
                     "Dungeon and Dragon".equals(themes.get(userChoice - 1).getName())) {
                 boolean check;
                 try {
-                    System.out.println("Do you want to load the game");
-                    System.out.println("1. Yes");
-                    System.out.println("2. No");
+                    ColorPrintStream.printWithColor("Do you want to load the game\n" + "1. Yes\n" + "2. No\n", Color.CYAN, Color.BLACK_BACKGROUND);
                     userChoice = scanner.nextInt();
                     check = new File(URLDecoder.decode("G:\\Job Quest abroad\\game CLI\\testsave\\" + "save.ser", "UTF-8")).exists();
                     if (check && 1 == userChoice) {
