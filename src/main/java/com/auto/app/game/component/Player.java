@@ -1,8 +1,10 @@
 package com.auto.app.game.component;
 
 
-public class Player extends Character {
+import java.io.Serializable;
 
+public class Player extends Character implements Serializable {
+    private static final long serialVersionUID = 8495992061792087696L;
     private int score;
     private int health;
     private Block currentPosition;
@@ -65,22 +67,22 @@ public class Player extends Character {
 
         }
 
-        public PlayerBuilder buildWithName(String name) {
+        public PlayerBuilder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public PlayerBuilder buildWithHealth(int health) {
+        public PlayerBuilder withHealth(int health) {
             this.health = health;
             return this;
         }
 
-        public PlayerBuilder buildWithScore(int score) {
+        public PlayerBuilder withScore(int score) {
             this.score = score;
             return this;
         }
 
-        public PlayerBuilder buildWithCurrentPosition(Block block) {
+        public PlayerBuilder withCurrentPosition(Block block) {
             this.currentPosition = block;
             return this;
         }

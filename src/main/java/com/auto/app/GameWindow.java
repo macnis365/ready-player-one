@@ -33,6 +33,7 @@ public class GameWindow {
             int userChoice = scanner.nextInt();
             if (userChoice > 0 && themes.size() >= userChoice &&
                     "Dungeon and Dragon".equals(themes.get(userChoice - 1).getName())) {
+
                 ThemCreationContext context = new ThemCreationContext();
                 context.setThemeCreatoinStrategy(new DungeonCreationStrategy());
                 Theme dungeonTheme = context.createTheme(scanner);

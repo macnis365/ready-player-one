@@ -1,6 +1,10 @@
 package com.auto.app.game.component;
 
-public class Dialogue {
+import java.io.Serializable;
+
+public class Dialogue implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String introduction;
     private String direction;
 
@@ -14,7 +18,7 @@ public class Dialogue {
     public String getDirection() {
         return direction;
     }
-    
+
     public static class DialogueBuilder {
         private String introduction;
         private String direction;

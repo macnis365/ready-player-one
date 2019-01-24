@@ -2,10 +2,12 @@ package com.auto.app.game.component;
 
 import com.auto.app.game.event.Command;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class Theme {
+public class Theme implements Serializable {
+    private static final long serialVersionUID = 8495992061792080096L;
 
     private String name;
     private String descriptions;

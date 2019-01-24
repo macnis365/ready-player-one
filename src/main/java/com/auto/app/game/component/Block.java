@@ -1,6 +1,9 @@
 package com.auto.app.game.component;
 
-public class Block {
+import java.io.Serializable;
+
+public class Block implements Serializable {
+    private static final long serialVersionUID = 8496002061792087696L;
 
     private String name;
     private Block neighborBlocks;

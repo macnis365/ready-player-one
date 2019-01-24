@@ -2,10 +2,7 @@ package com.auto.app.game.dungeon;
 
 import com.auto.app.game.component.Player;
 import com.auto.app.game.component.Theme;
-import com.auto.app.game.event.CollectCommand;
-import com.auto.app.game.event.Command;
-import com.auto.app.game.event.EnterBlockCommand;
-import com.auto.app.game.event.KillCommand;
+import com.auto.app.game.event.*;
 import com.auto.app.game.themestrategy.ThemePlayStrategy;
 
 import java.util.HashMap;
@@ -37,6 +34,8 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
                 case 5: // kill
                     command = new KillCommand(player);
                     break;
+                case 2:// save game
+                    command = new SaveCommand(theme);
                 default:
                     System.out.println("Invalid input");
                     break;

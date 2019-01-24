@@ -32,9 +32,9 @@ public class DungeonCreationStrategy implements ThemeCreatoinStrategy {
     public Character createPlayer(Scanner input) {
         System.out.println("Character name");
         Player.PlayerBuilder playerBuilder = new Player.PlayerBuilder();
-        playerBuilder.buildWithName(input.next());
+        playerBuilder.withName(input.next());
         Block rootBlock = createBlock(input);
-        Player player = playerBuilder.buildWithHealth(100).buildWithScore(0).withIsAlive(true).buildWithCurrentPosition(rootBlock).build();
+        Player player = playerBuilder.withHealth(100).withScore(0).withIsAlive(true).withCurrentPosition(rootBlock).build();
         return player;
     }
 
