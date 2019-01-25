@@ -1,9 +1,7 @@
 package com.auto.app.game.themestrategy;
 
-import com.auto.app.game.Theme;
-
-import java.util.Scanner;
+import com.auto.app.game.component.Theme;
 
 public interface ThemeCreatoinStrategy {
-    public Theme createTheme(Scanner input);
+    public Theme createTheme();
 }

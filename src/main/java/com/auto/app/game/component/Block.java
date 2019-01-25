@@ -1,13 +1,16 @@
-package com.auto.app.game;
+package com.auto.app.game.component;
 
-public class Block {
+import java.io.Serializable;
+
+public class Block implements Serializable {
+    private static final long serialVersionUID = 50L;
 
     private String name;
     private Block neighborBlocks;
     private Item items;
     private NonPlayer nonPlayers;
-    private String story;
-
+    private Dialogue dialogue;
+    private boolean isLocked;
 
     private Block() {
 
@@ -45,12 +48,16 @@ public class Block {
         this.nonPlayers = nonPlayers;
     }
 
-    public String getStory() {
-        return story;
+    public Dialogue getDialogue() {
+        return dialogue;
     }
 
-    public void setStory(String story) {
-        this.story = story;
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
     }
 
     public static class BlockBuilder {
@@ -58,7 +65,8 @@ public class Block {
         private Block neighborBlocks;
         private Item items;
         private NonPlayer nonPlayers;
-        private String story;
+        private Dialogue dialogue;
+        private boolean isLocked;
 
         public BlockBuilder() {
 
@@ -84,8 +92,13 @@ public class Block {
             return this;
         }
 
-        public BlockBuilder withStory(String story) {
-            this.story = story;
+        public BlockBuilder withDialogue(Dialogue dialogue) {
+            this.dialogue = dialogue;
+            return this;
+        }
+
+        public BlockBuilder withIsLocked(boolean isLocked) {
+            this.isLocked = isLocked;
             return this;
         }
 
@@ -95,7 +108,8 @@ public class Block {
             block.items = this.items;
             block.nonPlayers = this.nonPlayers;
             block.neighborBlocks = this.neighborBlocks;
-            block.story = this.story;
+            block.dialogue = this.dialogue;
+            block.isLocked = this.isLocked;
             return block;
         }
     }

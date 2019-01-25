@@ -1,8 +1,11 @@
-package com.auto.app.game;
+package com.auto.app.game.component;
 
 
-public class Player extends Character {
+import java.io.Serializable;
+import java.util.Objects;
 
+public class Player extends Character implements Serializable {
+    private static final long serialVersionUID = 10L;
     private int score;
     private int health;
     private Block currentPosition;
@@ -53,44 +56,58 @@ public class Player extends Character {
         this.isAlive = isAlive;
     }
 
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
     public static class PlayerBuilder {
         private String name;
         private int health;
         private int score;
         private Block currentPosition;
         private Item item;
+        private String aboutMe;
         private boolean isAlive;
 
         public PlayerBuilder() {
 
         }
 
-        public PlayerBuilder buildWithName(String name) {
+        public PlayerBuilder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public PlayerBuilder buildWithHealth(int health) {
+        public PlayerBuilder withHealth(int health) {
             this.health = health;
             return this;
         }
 
-        public PlayerBuilder buildWithScore(int score) {
+        public PlayerBuilder withScore(int score) {
             this.score = score;
             return this;
         }
 
-        public PlayerBuilder buildWithCurrentPosition(Block block) {
+        public PlayerBuilder withCurrentPosition(Block block) {
             this.currentPosition = block;
             return this;
         }
 
-        public PlayerBuilder buildWithItem(Item item) {
+        public PlayerBuilder withAboutMe(String aboutMe) {
+            this.aboutMe = aboutMe;
+            return this;
+        }
+
+        public PlayerBuilder withItem(Item item) {
             this.item = item;
             return this;
         }
 
-        public PlayerBuilder buildWithisAlive(boolean alive) {
+        public PlayerBuilder withIsAlive(boolean alive) {
             this.isAlive = alive;
             return this;
         }
@@ -103,8 +120,28 @@ public class Player extends Character {
             player.currentPosition = this.currentPosition;
             player.health = this.health;
             player.isAlive = this.isAlive;
+            player.aboutMe = this.aboutMe;
             return player;
         }
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Player)) return false;
+        if (!super.equals(o)) return false;
+        Player player = (Player) o;
+        return score == player.score &&
+                health == player.health &&
+                experience == player.experience &&
+                Objects.equals(currentPosition, player.currentPosition) &&
+                Objects.equals(item, player.item);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(super.hashCode(), score, health, currentPosition, item, experience);
     }
 }

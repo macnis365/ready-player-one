@@ -1,18 +1,16 @@
-package com.auto.app.game;
+package com.auto.app.game.component;
 
-import com.auto.app.game.event.Command;
-
-import java.util.List;
+import java.io.Serializable;
 import java.util.Map;
+import java.util.Objects;
 
-public class Theme {
+public class Theme implements Serializable {
+    private static final long serialVersionUID = 20L;
 
     private String name;
     private String descriptions;
-    private int winScore;//win condition
     private Character player;
     private Map<Integer, String> userOptions;
-    private List<Command> commands;
 
     public String getName() {
         return name;
@@ -20,14 +18,6 @@ public class Theme {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getWinScore() {
-        return winScore;
-    }
-
-    public void setWinScore(int winScore) {
-        this.winScore = winScore;
     }
 
     public Character getPlayer() {
@@ -46,17 +36,8 @@ public class Theme {
         this.userOptions = userOptions;
     }
 
-    public List<Command> getCommands() {
-        return commands;
-    }
-
-    public void setCommands(List<Command> commands) {
-        this.commands = commands;
-    }
-
     public static class ThemeBuilder {
         private String name;
-        private int winScore;
         private Character player;
         private Map<Integer, String> userOptions;
 
@@ -66,11 +47,6 @@ public class Theme {
 
         public ThemeBuilder buildWithName(String name) {
             this.name = name;
-            return this;
-        }
-
-        public ThemeBuilder buildWithWinScore(int winScore) {
-            this.winScore = winScore;
             return this;
         }
 
@@ -87,11 +63,27 @@ public class Theme {
         public Theme build() {
             Theme theme = new Theme();
             theme.player = this.player;
-            theme.winScore = this.winScore;
             theme.name = this.name;
             theme.userOptions = this.userOptions;
             return theme;
         }
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Theme)) return false;
+        Theme theme = (Theme) o;
+        return Objects.equals(name, theme.name) &&
+                Objects.equals(descriptions, theme.descriptions) &&
+                Objects.equals(player, theme.player) &&
+                Objects.equals(userOptions, theme.userOptions);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, descriptions, player, userOptions);
     }
 }

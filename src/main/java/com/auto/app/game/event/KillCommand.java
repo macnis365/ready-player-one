@@ -1,8 +1,10 @@
 package com.auto.app.game.event;
 
-import com.auto.app.game.Block;
-import com.auto.app.game.NonPlayer;
-import com.auto.app.game.Player;
+import com.auto.app.game.component.Block;
+import com.auto.app.game.component.NonPlayer;
+import com.auto.app.game.component.Player;
+import com.auto.app.game.util.Color;
+import com.auto.app.game.util.ColorPrintStream;
 
 public class KillCommand implements Command {
     Player player;
@@ -15,12 +17,20 @@ public class KillCommand implements Command {
     public void execute() {
         Block currentBlock = player.getCurrentPosition();
         NonPlayer nonPlayer = currentBlock.getNonPlayers();
-        if (null != nonPlayer) {
-//            remove threat from curentBlock, and add points to player
+        if (null != nonPlayer && nonPlayer.getIsThreat()) {
+            player.setScore(player.getScore() + nonPlayer.getPoints());
             currentBlock.setNonPlayers(null);
-            System.out.println("Eleminated the threat.");
+            if (null != player.getCurrentPosition().getNeighborBlocks()) {
+                player.getCurrentPosition().getNeighborBlocks().setLocked(false);
+                player.setExperience(player.getExperience() + 1);
+            }
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+            ColorPrintStream.printWithColor("Eliminated the threat.", Color.GREEN, Color.BLACK_BACKGROUND);
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
         } else {
-            System.out.println("No threat to kill");
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+            ColorPrintStream.printWithColor("No threat to kill", Color.GREEN, Color.BLACK_BACKGROUND);
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
         }
     }
 }

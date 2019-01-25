@@ -1,8 +1,6 @@
 package com.auto.app.game.themestrategy;
 
-import com.auto.app.game.Theme;
-
-import java.util.Scanner;
+import com.auto.app.game.component.Theme;
 
 public class ThemCreationContext {
     ThemeCreatoinStrategy themeCreatoinStrategy;
@@ -11,7 +9,7 @@ public class ThemCreationContext {
         this.themeCreatoinStrategy = themeCreatoinStrategy;
     }
 
-    public Theme createTheme(Scanner scanner) {
-        return themeCreatoinStrategy.createTheme(scanner);
+    public Theme createTheme() {
+        return themeCreatoinStrategy.createTheme();
     }
 }

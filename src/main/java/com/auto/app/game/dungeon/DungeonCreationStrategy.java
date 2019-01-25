@@ -1,41 +1,53 @@
 package com.auto.app.game.dungeon;
 
-import com.auto.app.game.*;
-import com.auto.app.game.Character;
+import com.auto.app.game.component.*;
+import com.auto.app.game.component.Character;
 import com.auto.app.game.themestrategy.ThemeCreatoinStrategy;
+import com.auto.app.game.util.Color;
+import com.auto.app.game.util.ColorPrintStream;
+import com.auto.app.game.util.ScannerSingleton;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
+
+import static com.auto.app.game.dungeon.DungeonThemeConstants.*;
 
 public class DungeonCreationStrategy implements ThemeCreatoinStrategy {
+
     @Override
-    public Theme createTheme(Scanner input) {
-        Character player = createPlayer(input);
-        Theme dungeon = new Theme.ThemeBuilder().buildWithName("Go Dungeon........").buildWithWinScore(10).buildWithPlayer(player).buildWithUserOptions(createUserOption()).build();
-        return dungeon;
+    public Theme createTheme() {
+        Character player = createPlayer();
+        return new Theme.ThemeBuilder().buildWithName("Go Dungeon........").buildWithPlayer(player).buildWithUserOptions(createUserOption()).build();
     }
 
-    public Character createPlayer(Scanner input) {
-        System.out.println("Character name");
+    public Character createPlayer() {
+        ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+        ColorPrintStream.printWithColor("Provide Your Avatar name", Color.GREEN, Color.BLACK_BACKGROUND);
         Player.PlayerBuilder playerBuilder = new Player.PlayerBuilder();
-        playerBuilder.buildWithName(input.next());
-        Block rootBlock = createBlock(input);
-        Player player = playerBuilder.buildWithHealth(100).buildWithScore(0).buildWithisAlive(true).buildWithCurrentPosition(rootBlock).build();
-        return player;
+        ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
+        playerBuilder.withName(ScannerSingleton.getStringInput());
+        ColorPrintStream.printWithColor("Describe about your personality", Color.GREEN, Color.BLACK_BACKGROUND);
+        ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
+        ColorPrintStream.printWithColor(">\t", Color.YELLOW, Color.BLACK_BACKGROUND);
+        playerBuilder.withName(ScannerSingleton.getStringInput());
+        Block rootBlock = createBlock();
+        return playerBuilder.withHealth(100).withScore(0).withIsAlive(true).withCurrentPosition(rootBlock).build();
     }
 
-    public Block createBlock(Scanner input) {
+    public Block createBlock() {
         Block.BlockBuilder blockBuilder = new Block.BlockBuilder();
-        Block endBlock = new Block.BlockBuilder().withName("2 Room").withStory("Love story").withItem(new Item.ItemBuilder().withName("Alter").withPoints(10).build()).withNpcPlayers(new NonPlayer.NpcPlayerBuilder().buildWithName("zombie").buildWithIsThreatFlag(true).buildWithPoints(20).build()).build();
-        return blockBuilder.withName("1 Room").withStory("Horror Story").withItem(new Item.ItemBuilder().withName("Skull").withPoints(20).build()).withNeighborBlocks(endBlock).build();
+        Block finalBlock = new Block.BlockBuilder().withName("Chapter 3").withItem(new Item.ItemBuilder().withName("Talisman").withPoints(20).withDescription(TALISMAN_DESCRIPTION).build()).withIsLocked(true).withDialogue(new Dialogue.DialogueBuilder().buildWithDirection(ROOM3_DIRECTION).buildWithIntroduction(ROOM3_INTRODUCTION).build()).build();
+        Block secondBlock = new Block.BlockBuilder().withName("Chapter 2").withIsLocked(true).withNpcPlayers(new NonPlayer.NpcPlayerBuilder().withName("zombie").withIsThreatFlag(true).withPoints(10).build()).withNeighborBlocks(finalBlock).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM2_INTRODUCTION).buildWithDirection(ROOM2_DIRECTION).build()).build();
+        return blockBuilder.withName("Chapter 1").withItem(new Item.ItemBuilder().withName("Skull").withPoints(5).withDescription(SKULL_DESCRIPTION).build()).withDialogue(new Dialogue.DialogueBuilder().buildWithIntroduction(ROOM1_INTRODUCTION).buildWithDirection(ROOM1_DIRECTION).build()).withNeighborBlocks(secondBlock).build();
     }
 
     public Map<Integer, String> createUserOption() {
         HashMap<Integer, String> options = new HashMap<>();
         options.put(8, "go to neighbor block.");
         options.put(1, "collect item in the block.");
-        options.put(5, "kill the monster/zombie.");
+        options.put(5, "kill the monster.");
+        options.put(2, "save the game");
+        options.put(3, "back to menu");
         return options;
     }
 

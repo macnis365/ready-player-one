@@ -1,56 +1,88 @@
 package com.auto.app.game.dungeon;
 
-import com.auto.app.game.Block;
-import com.auto.app.game.Player;
-import com.auto.app.game.Theme;
-import com.auto.app.game.event.CollectCommand;
-import com.auto.app.game.event.Command;
-import com.auto.app.game.event.EnterBlockCommand;
-import com.auto.app.game.event.KillCommand;
+import com.auto.app.game.component.Player;
+import com.auto.app.game.component.Theme;
+import com.auto.app.game.customexception.GameIllegalStateException;
+import com.auto.app.game.event.*;
 import com.auto.app.game.themestrategy.ThemePlayStrategy;
+import com.auto.app.game.util.Color;
+import com.auto.app.game.util.ColorPrintStream;
+import com.auto.app.game.util.ScannerSingleton;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
+
+import static com.auto.app.game.util.Constants.INVALID_INPUT_ERROR_MESSAGE;
 
 public class DungeonPlayStrategy implements ThemePlayStrategy {
     @Override
-    public void play(Theme theme, Scanner input) {
+    public void play(Theme theme) throws GameIllegalStateException {
+        Map<String, Command> commandBucket = createCommandBucket(theme);
         Player player = (Player) theme.getPlayer();
         Map<Integer, String> options = theme.getUserOptions();
-        Command command = null;
+        ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
+        ColorPrintStream.printWithColor(player.getCurrentPosition().getDialogue().getDirection(), Color.GREEN, Color.BLACK_BACKGROUND);
+        ColorPrintStream.printWithColor(player.getCurrentPosition().getDialogue().getIntroduction(), Color.GREEN, Color.BLACK_BACKGROUND);
+        ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
         while (player.getIsAlive()) {
-            Block playerCurrentPosition = player.getCurrentPosition();
-            System.out.println(playerCurrentPosition.getStory());
             for (HashMap.Entry action : options.entrySet()) {
-                System.out.println(action.getKey() + ". " + action.getValue());
+                ColorPrintStream.printWithColor(action.getKey() + ". " + action.getValue(), Color.CYAN, Color.BLACK_BACKGROUND);
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
             }
-            int choice = input.nextInt();
-            switch (choice) {
-                case 8: // go neighbour block
-                    command = new EnterBlockCommand(player);
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+            ColorPrintStream.printWithColor(">\t", Color.YELLOW, Color.BLACK_BACKGROUND);
+            int userIntegerChoice;
+            userIntegerChoice = ScannerSingleton.getIntegerInput();
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
+            switch (userIntegerChoice) {
+                case 8:
+                    commandBucket.get("enterblock").execute();
                     break;
-                case 1: // collect item
-                    command = new CollectCommand(player);
+                case 1:
+                    commandBucket.get("collect").execute();
                     break;
-                case 3: // explore
+                case 3:
+                    commandBucket.get("goback").execute();
                     break;
-                case 5: // kill
-                    command = new KillCommand(player);
+                case 5:
+                    commandBucket.get("kill").execute();
+                    break;
+                case 2:
+                    commandBucket.get("save").execute();
                     break;
                 default:
-                    System.out.println("Invalid input");
+                    ColorPrintStream.printWithColor(INVALID_INPUT_ERROR_MESSAGE, Color.RED, Color.BLACK_BACKGROUND);
                     break;
             }
-            command.execute();
-            if (player.getScore() > 20) {
-                System.out.println(player.name + "wins the game with score " + theme.getWinScore());
+            if (player.getScore() > 20 && null == player.getCurrentPosition().getNeighborBlocks()) {
+                ColorPrintStream.printWithColor(player.getName() + " : wins the game with score " + player.getScore(), Color.BLACK, Color.GREEN_BACKGROUND);
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
+                ColorPrintStream.printWithColor("Going back to menu.", Color.GREEN, Color.BLACK_BACKGROUND);
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
                 break;
             }
             if (player.getHealth() == 0) {
-                System.out.println("Player one got killed! better luck next time");
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
+                ColorPrintStream.printWithColor(player.getName() + " killed! better luck next time", Color.RED, Color.BLACK_BACKGROUND);
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
+                ColorPrintStream.printWithColor("Going back to menu.", Color.GREEN, Color.BLACK_BACKGROUND);
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
                 break;
             }
         }
+    }
+
+    public Map<String, Command> createCommandBucket(Theme theme) throws GameIllegalStateException {
+        HashMap<String, Command> bucket = new HashMap<String, Command>();
+        if (null == theme || null == theme.getPlayer()) {
+            throw new GameIllegalStateException("No theme or player initialized");
+        }
+        Player player = (Player) theme.getPlayer();
+        bucket.put("kill", new KillCommand(player));
+        bucket.put("enterblock", new EnterBlockCommand(player));
+        bucket.put("goback", new GoBackCommand(player));
+        bucket.put("save", new SaveCommand(theme));
+        bucket.put("collect", new CollectCommand(player));
+        return bucket;
     }
 }

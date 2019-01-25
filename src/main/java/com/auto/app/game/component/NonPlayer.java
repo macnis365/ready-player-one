@@ -1,6 +1,10 @@
-package com.auto.app.game;
+package com.auto.app.game.component;
 
-public class NonPlayer extends Character {
+import java.io.Serializable;
+
+public class NonPlayer extends Character implements Serializable {
+    private static final long serialVersionUID = 25L;
+
     private boolean isThreat;
     private int points;
 
@@ -40,17 +44,17 @@ public class NonPlayer extends Character {
 
         }
 
-        public NpcPlayerBuilder buildWithName(String name) {
+        public NpcPlayerBuilder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public NpcPlayerBuilder buildWithIsThreatFlag(boolean isThreat) {
+        public NpcPlayerBuilder withIsThreatFlag(boolean isThreat) {
             this.isThreat = isThreat;
             return this;
         }
 
-        public NpcPlayerBuilder buildWithPoints(int points) {
+        public NpcPlayerBuilder withPoints(int points) {
             this.points = points;
             return this;
         }
