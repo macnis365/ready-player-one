@@ -40,9 +40,10 @@ public class GameWindow {
             for (int index = 0; index < themes.size(); index++) {
                 System.out.println(index + 1 + " - " + themes.get(index).getName());
             }
+            int userChoice;
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
             ColorPrintStream.printWithColor(">\t", Color.YELLOW, Color.BLACK_BACKGROUND);
-            int userChoice = ScannerSingleton.getIntegerInput();
+            userChoice = ScannerSingleton.getIntegerInput();
             if (userChoice > 0 && themes.size() >= userChoice &&
                     "Dungeon and Dragon".equals(themes.get(userChoice - 1).getName())) {
                 boolean check;

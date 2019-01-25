@@ -11,6 +11,8 @@ import com.auto.app.game.util.ScannerSingleton;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.auto.app.game.util.Constants.INVALID_INPUT_ERROR_MESSAGE;
+
 public class DungeonPlayStrategy implements ThemePlayStrategy {
     @Override
     public void play(Theme theme) {
@@ -28,9 +30,10 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
             }
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
             ColorPrintStream.printWithColor(">\t", Color.YELLOW, Color.BLACK_BACKGROUND);
-            int choice = ScannerSingleton.getIntegerInput();
+            int userIntegerChoice;
+            userIntegerChoice = ScannerSingleton.getIntegerInput();
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
-            switch (choice) {
+            switch (userIntegerChoice) {
                 case 8:
                     new EnterBlockCommand(player).execute();
                     break;
@@ -45,7 +48,7 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
                 case 2:
                     new SaveCommand(theme).execute();
                 default:
-                    ColorPrintStream.printWithColor("Invalid input", Color.GREEN, Color.BLACK_BACKGROUND);
+                    ColorPrintStream.printWithColor(INVALID_INPUT_ERROR_MESSAGE, Color.RED, Color.BLACK_BACKGROUND);
                     break;
             }
             if (player.getScore() > 30) {
