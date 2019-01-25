@@ -40,25 +40,22 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
                     break;
                 case 1:
                     commandBucket.get("collect").execute();
-//                    new CollectCommand(player).execute();
                     break;
                 case 3:
                     commandBucket.get("goback").execute();
                     break;
                 case 5:
                     commandBucket.get("kill").execute();
-//                    new KillCommand(player).execute();
                     break;
                 case 2:
                     commandBucket.get("save").execute();
-//                    new SaveCommand(theme).execute();
                     break;
                 default:
                     ColorPrintStream.printWithColor(INVALID_INPUT_ERROR_MESSAGE, Color.RED, Color.BLACK_BACKGROUND);
                     break;
             }
-            if (player.getScore() > 30) {
-                ColorPrintStream.printWithColor(player.name + " : wins the game with score " + theme.getWinScore(), Color.BLACK, Color.GREEN_BACKGROUND);
+            if (player.getScore() > 20 && null == player.getCurrentPosition().getNeighborBlocks()) {
+                ColorPrintStream.printWithColor(player.getName() + " : wins the game with score " + player.getScore(), Color.BLACK, Color.GREEN_BACKGROUND);
                 ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
                 ColorPrintStream.printWithColor("Going back to menu.", Color.GREEN, Color.BLACK_BACKGROUND);
                 ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);

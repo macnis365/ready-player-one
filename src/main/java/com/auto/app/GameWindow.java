@@ -10,10 +10,7 @@ import com.auto.app.game.util.Color;
 import com.auto.app.game.util.ColorPrintStream;
 import com.auto.app.game.util.ScannerSingleton;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +38,6 @@ public class GameWindow {
                 System.out.println(index + 1 + " - " + themes.get(index).getName());
             }
             int userChoice;
-            boolean isGameFileExist = false;
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
             ColorPrintStream.printWithColor(">\t", Color.YELLOW, Color.BLACK_BACKGROUND);
             userChoice = ScannerSingleton.getIntegerInput();
@@ -53,34 +49,28 @@ public class GameWindow {
                     ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
                     ColorPrintStream.printWithColor(">\t", Color.YELLOW, Color.BLACK_BACKGROUND);
                     userChoice = ScannerSingleton.getIntegerInput();
-                    String directoryPath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "/" + DEFAULT_FILENAME;
-                    File file = new File(directoryPath);
-                    if (!file.isDirectory() && file.exists()) {
-                        isGameFileExist = true;
-                    }
-                    if (isGameFileExist && 1 == userChoice) {
-                        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(directoryPath));
+                    FileInputStream fileInputStream = null;
+                    if (1 == userChoice) {
+                        try {
+                            fileInputStream = new FileInputStream(DEFAULT_FILENAME);
+                        } catch (FileNotFoundException fileEx) {
+                            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
+                            ColorPrintStream.printWithColor(LOAD_WARNING_MESSAGE, Color.BLACK_BACKGROUND, Color.YELLOW);
+                            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
+                            createAndLoad();
+                        }
+                        ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
                         Theme theme = (Theme) inputStream.readObject();
                         ThemePlayContext themePlayContext = new ThemePlayContext();
                         themePlayContext.setThemePlayStrategy(new DungeonPlayStrategy());
                         themePlayContext.play(theme);
-                    } else if (!isGameFileExist && 1 == userChoice) {
-                        ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
-                        ColorPrintStream.printWithColor(LOAD_WARNING_MESSAGE, Color.BLACK_BACKGROUND, Color.YELLOW);
-                        ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
-                        createAndLoad();
                     } else {
                         createAndLoad();
                     }
                 } catch (GameIllegalStateException e) {
                     ColorPrintStream.printWithColor(e.getMessage(), Color.BLACK_BACKGROUND, Color.YELLOW);
-//                    e.getCause();
-                } catch (FileNotFoundException e) {
-                    ColorPrintStream.printWithColor("******System error*****", Color.BLACK_BACKGROUND, Color.YELLOW);
-//                    e.getCause();
                 } catch (Exception e) {
                     ColorPrintStream.printWithColor("******System error*****", Color.BLACK_BACKGROUND, Color.YELLOW);
-//                    e.getCause();
                 }
             } else {
                 themeStart = false;
@@ -101,9 +91,7 @@ public class GameWindow {
 
     public List<Theme> loadTheme() {
         Theme theme1 = new Theme.ThemeBuilder().buildWithName("Dungeon and Dragon").build();
-//        Theme theme2 = new Theme.ThemeBuilder().buildWithName("Super Mario").build();
         themes.add(theme1);
-//        themes.add(theme2);
         return themes;
     }
 

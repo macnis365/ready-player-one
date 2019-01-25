@@ -21,10 +21,9 @@ public class SaveCommand implements Command {
 
     @Override
     public void execute() {
-        /* ColorPrintStream.printWithColor("current path ***********  " + getClass().getProtectionDomain().getCodeSource().getLocation().getPath(), Color.RED, Color.BLACK_BACKGROUND);*/
+
         try {
-            String directoryPath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-            ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(URLDecoder.decode(directoryPath + "/" + DEFAULT_FILENAME, "UTF-8")));
+            ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(DEFAULT_FILENAME));
             objectOut.writeObject(theme);
             objectOut.close();
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);

@@ -3,7 +3,7 @@ package com.auto.app.game.component;
 import java.io.Serializable;
 
 public class NonPlayer extends Character implements Serializable {
-    private static final long serialVersionUID = 8500992061792087696L;
+    private static final long serialVersionUID = 25L;
 
     private boolean isThreat;
     private int points;

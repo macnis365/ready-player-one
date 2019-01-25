@@ -4,7 +4,7 @@ package com.auto.app.game.component;
 import java.io.Serializable;
 
 public class Player extends Character implements Serializable {
-    private static final long serialVersionUID = 8495992061792087696L;
+    private static final long serialVersionUID = 10L;
     private int score;
     private int health;
     private Block currentPosition;

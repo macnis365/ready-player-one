@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Theme implements Serializable {
-    private static final long serialVersionUID = 8495992061792080096L;
+    private static final long serialVersionUID = 20L;
 
     private String name;
     private String descriptions;

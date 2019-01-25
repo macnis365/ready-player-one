@@ -12,4 +12,6 @@ public interface DungeonThemeConstants {
     String ROOM3_DIRECTION = "You head off to the west";
     String ROOM3_INTRODUCTION = "You see a set of stone steps leading to a wooden door, which is ajar. Light streams through the crack in the door.\n" +
             "The secret door leads back to the east.";
+    String TALISMAN_DESCRIPTION = "an ancient talisman, typically an inscribed ring or stone, that is thought to have magic powers and to bring good luck.";
+
 }
