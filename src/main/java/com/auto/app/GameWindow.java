@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,25 +39,33 @@ public class GameWindow {
                 System.out.println(index + 1 + " - " + themes.get(index).getName());
             }
             int userChoice;
+            boolean isGameFileExist = false;
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
             ColorPrintStream.printWithColor(">\t", Color.YELLOW, Color.BLACK_BACKGROUND);
             userChoice = ScannerSingleton.getIntegerInput();
             if (userChoice > 0 && themes.size() >= userChoice &&
                     "Dungeon and Dragon".equals(themes.get(userChoice - 1).getName())) {
-                boolean check;
                 try {
+                    ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
                     ColorPrintStream.printWithColor(LOAD_MASSAGE, Color.CYAN, Color.BLACK_BACKGROUND);
+                    ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
                     ColorPrintStream.printWithColor(">\t", Color.YELLOW, Color.BLACK_BACKGROUND);
                     userChoice = ScannerSingleton.getIntegerInput();
-                    check = new File(URLDecoder.decode("G:\\Job Quest abroad\\game CLI\\testsave\\" + "save.ser", "UTF-8")).exists();
-                    if (check && 1 == userChoice) {
-                        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(URLDecoder.decode("G:\\Job Quest abroad\\game CLI\\testsave\\", "UTF-8") + "save.ser"));
+                    String directoryPath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "/default.ser";
+                    File file = new File(directoryPath);
+                    if (!file.isDirectory() && file.exists()) {
+                        isGameFileExist = true;
+                    }
+                    if (isGameFileExist && 1 == userChoice) {
+                        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(directoryPath));
                         Theme theme = (Theme) inputStream.readObject();
                         ThemePlayContext themePlayContext = new ThemePlayContext();
                         themePlayContext.setThemePlayStrategy(new DungeonPlayStrategy());
                         themePlayContext.play(theme);
-                    } else if (!check && 1 == userChoice) {
-                        System.out.println(LOAD_WARNING_MESSAGE);
+                    } else if (!isGameFileExist && 1 == userChoice) {
+                        ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
+                        ColorPrintStream.printWithColor(LOAD_WARNING_MESSAGE, Color.BLACK_BACKGROUND, Color.YELLOW);
+                        ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
                         createAndLoad();
                     } else {
                         createAndLoad();

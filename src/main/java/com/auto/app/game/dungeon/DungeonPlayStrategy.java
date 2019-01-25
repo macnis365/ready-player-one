@@ -18,7 +18,6 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
     public void play(Theme theme) {
         Player player = (Player) theme.getPlayer();
         Map<Integer, String> options = theme.getUserOptions();
-        Command command = null;
         ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
         ColorPrintStream.printWithColor(player.getCurrentPosition().getDialogue().getDirection(), Color.GREEN, Color.BLACK_BACKGROUND);
         ColorPrintStream.printWithColor(player.getCurrentPosition().getDialogue().getIntroduction(), Color.GREEN, Color.BLACK_BACKGROUND);
@@ -47,6 +46,7 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
                     break;
                 case 2:
                     new SaveCommand(theme).execute();
+                    break;
                 default:
                     ColorPrintStream.printWithColor(INVALID_INPUT_ERROR_MESSAGE, Color.RED, Color.BLACK_BACKGROUND);
                     break;

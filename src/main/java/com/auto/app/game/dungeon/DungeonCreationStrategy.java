@@ -21,8 +21,11 @@ public class DungeonCreationStrategy implements ThemeCreatoinStrategy {
     }
 
     public Character createPlayer() {
+        ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
         ColorPrintStream.printWithColor("Provide Your Character name", Color.GREEN, Color.BLACK_BACKGROUND);
         Player.PlayerBuilder playerBuilder = new Player.PlayerBuilder();
+        ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
+        ColorPrintStream.printWithColor(">\t", Color.YELLOW, Color.BLACK_BACKGROUND);
         playerBuilder.withName(ScannerSingleton.getStringInput());
         Block rootBlock = createBlock();
         return playerBuilder.withHealth(100).withScore(0).withIsAlive(true).withCurrentPosition(rootBlock).build();

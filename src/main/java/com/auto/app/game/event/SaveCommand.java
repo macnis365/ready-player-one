@@ -4,6 +4,7 @@ import com.auto.app.game.component.Theme;
 import com.auto.app.game.util.Color;
 import com.auto.app.game.util.ColorPrintStream;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.UnsupportedEncodingException;
@@ -18,11 +19,10 @@ public class SaveCommand implements Command {
 
     @Override
     public void execute() {
-//        String path = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-//        System.out.println(getClass().getProtectionDomain().getCodeSource());
+       /* ColorPrintStream.printWithColor("current path ***********  " + getClass().getProtectionDomain().getCodeSource().getLocation().getPath(), Color.RED, Color.BLACK_BACKGROUND);*/
         try {
-            URLDecoder.decode("G:\\Job Quest abroad\\game CLI\\testsave", "UTF-8");
-            ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(URLDecoder.decode("G:\\Job Quest abroad\\game CLI\\testsave\\", "UTF-8") + "save.ser"));
+            String directoryPath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+            ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(URLDecoder.decode(directoryPath + "/default.ser", "UTF-8")));
             objectOut.writeObject(theme);
             objectOut.close();
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
