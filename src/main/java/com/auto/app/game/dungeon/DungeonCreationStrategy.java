@@ -3,39 +3,29 @@ package com.auto.app.game.dungeon;
 import com.auto.app.game.component.*;
 import com.auto.app.game.component.Character;
 import com.auto.app.game.themestrategy.ThemeCreatoinStrategy;
+import com.auto.app.game.util.Color;
+import com.auto.app.game.util.ColorPrintStream;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class DungeonCreationStrategy implements ThemeCreatoinStrategy {
+import static com.auto.app.game.dungeon.DungeonThemeConstants.*;
 
-    public static final String ROOM1_INTRODUCTION = "you are in a maze of twisty little passage all alike\n" + "You see a dark doorway to the north, A human skull lies in the corner";
-    public static final String SKULL_DESCRIPTION = "The skull appears blackened and chared. It smell of sulfur.\n" + "You took the skull and added to your backpack.\n";
-    public static final String ROOM1_DIRECTION = "You Head off to Dungeon\n" + "The dungeon door slams shut behind you. \n";
-    public static final String ROOM2_INTRODUCTION = "You are in a vast, dark hall.\n" +
-            "There is a door to the south back to dungeon entrance.\n" +
-            "A glowing orb floats in mid air,\n" +
-            "In the center of the room on a raised platform there is a creature, looks dangerous.";
-    public static final String ROOM2_DIRECTION = "You head off to the north\n";
-    public static final String ROOM3_DIRECTION = "You head off to the west";
-    public static final String ROOM3_INTRODUCTION = "You see a set of stone steps leading to a wooden door, which is ajar. Light streams through the crack in the door.\n" +
-            "The secret door leads back to the east.";
+public class DungeonCreationStrategy implements ThemeCreatoinStrategy {
 
     @Override
     public Theme createTheme(Scanner input) {
         Character player = createPlayer(input);
-        Theme dungeon = new Theme.ThemeBuilder().buildWithName("Go Dungeon........").buildWithWinScore(10).buildWithPlayer(player).buildWithUserOptions(createUserOption()).build();
-        return dungeon;
+        return new Theme.ThemeBuilder().buildWithName("Go Dungeon........").buildWithWinScore(10).buildWithPlayer(player).buildWithUserOptions(createUserOption()).build();
     }
 
     public Character createPlayer(Scanner input) {
-        System.out.println("Character name");
+        ColorPrintStream.printWithColor("Provide Your Character name", Color.GREEN, Color.BLACK_BACKGROUND);
         Player.PlayerBuilder playerBuilder = new Player.PlayerBuilder();
         playerBuilder.withName(input.next());
         Block rootBlock = createBlock(input);
-        Player player = playerBuilder.withHealth(100).withScore(0).withIsAlive(true).withCurrentPosition(rootBlock).build();
-        return player;
+        return playerBuilder.withHealth(100).withScore(0).withIsAlive(true).withCurrentPosition(rootBlock).build();
     }
 
     public Block createBlock(Scanner input) {

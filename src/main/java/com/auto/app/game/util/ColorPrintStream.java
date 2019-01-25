@@ -16,4 +16,8 @@ public class ColorPrintStream {
         System.out.print(background);
         System.out.println(message);
     }
+
+    public static void printBackgroundColorWithNoMessage(Color background) {
+        System.out.println(background);
+    }
 }

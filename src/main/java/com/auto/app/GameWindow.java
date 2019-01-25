@@ -49,16 +49,14 @@ public class GameWindow {
                         themePlayContext.setThemePlayStrategy(new DungeonPlayStrategy());
                         themePlayContext.play(theme, scanner);
                     } else if (!check && 1 == userChoice) {
-                        System.out.println("did find any saved game.");
+                        System.out.println("did not find any saved game.");
                         createAndLoad();
                     } else {
                         createAndLoad();
                     }
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
@@ -67,7 +65,8 @@ public class GameWindow {
             }
 //            set themeStart false to end game
         }
-        System.out.println("==============================End====================================");
+
+        ColorPrintStream.printWithColor("==============================End====================================", Color.GREEN, Color.BLACK_BACKGROUND);
     }
 
     private void createAndLoad() {
@@ -87,11 +86,4 @@ public class GameWindow {
         return themes;
     }
 
-    public void start() {
-        initializeTheme();
-    }
-
-    public void restart() {
-        initializeTheme();
-    }
 }

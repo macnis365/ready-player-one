@@ -4,6 +4,8 @@ import com.auto.app.game.component.Player;
 import com.auto.app.game.component.Theme;
 import com.auto.app.game.event.*;
 import com.auto.app.game.themestrategy.ThemePlayStrategy;
+import com.auto.app.game.util.Color;
+import com.auto.app.game.util.ColorPrintStream;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,11 +17,11 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
         Player player = (Player) theme.getPlayer();
         Map<Integer, String> options = theme.getUserOptions();
         Command command = null;
-        System.out.println(player.getCurrentPosition().getDialogue().getDirection());
-        System.out.println(player.getCurrentPosition().getDialogue().getIntroduction());
+        ColorPrintStream.printWithColor(player.getCurrentPosition().getDialogue().getDirection(), Color.GREEN, Color.BLACK_BACKGROUND);
+        ColorPrintStream.printWithColor(player.getCurrentPosition().getDialogue().getIntroduction(), Color.GREEN, Color.BLACK_BACKGROUND);
         while (player.getIsAlive()) {
             for (HashMap.Entry action : options.entrySet()) {
-                System.out.println(action.getKey() + ". " + action.getValue());
+                ColorPrintStream.printWithColor(action.getKey() + ". " + action.getValue(), Color.GREEN, Color.BLACK_BACKGROUND);
             }
             int choice = input.nextInt();
             switch (choice) {
@@ -37,22 +39,25 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
                 case 2:// save game
                     command = new SaveCommand(theme);
                 default:
-                    System.out.println("Invalid input");
+                    ColorPrintStream.printWithColor("Invalid input", Color.GREEN, Color.BLACK_BACKGROUND);
                     break;
             }
+//            null check
             command.execute();
             if (player.getScore() > 30) {
-                System.out.println(player.name + " : wins the game with score " + theme.getWinScore());
-                System.out.println();
-                System.out.println("Going back to menu.");
-                System.out.println();
+                ColorPrintStream.printWithColor(player.name + " : wins the game with score " + theme.getWinScore(), Color.GREEN, Color.BLACK_BACKGROUND);
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+                ColorPrintStream.printWithColor("Going back to menu.", Color.GREEN, Color.BLACK_BACKGROUND);
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
                 break;
             }
             if (player.getHealth() == 0) {
-                System.out.println("Player one got killed! better luck next time");
-                System.out.println();
-                System.out.println("Going back to menu.");
-                System.out.println();
+                ColorPrintStream.printWithColor("Player one got killed! better luck next time", Color.GREEN, Color.BLACK_BACKGROUND);
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+                ColorPrintStream.printWithColor("Going back to menu.", Color.GREEN, Color.BLACK_BACKGROUND);
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
                 break;
             }
         }

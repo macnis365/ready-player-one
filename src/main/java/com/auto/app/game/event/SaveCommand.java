@@ -1,6 +1,8 @@
 package com.auto.app.game.event;
 
 import com.auto.app.game.component.Theme;
+import com.auto.app.game.util.Color;
+import com.auto.app.game.util.ColorPrintStream;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -23,7 +25,7 @@ public class SaveCommand implements Command {
             ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(URLDecoder.decode("G:\\Job Quest abroad\\game CLI\\testsave\\", "UTF-8") + "save.ser"));
             objectOut.writeObject(theme);
             objectOut.close();
-            System.out.println("Game successfully saved");
+            ColorPrintStream.printWithColor("Game successfully saved", Color.GREEN, Color.BLACK_BACKGROUND);
         } catch (Exception e) {
             e.printStackTrace();
         }

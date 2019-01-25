@@ -3,10 +3,12 @@ package com.auto.app.game.event;
 import com.auto.app.game.component.Block;
 import com.auto.app.game.component.Item;
 import com.auto.app.game.component.Player;
+import com.auto.app.game.util.Color;
+import com.auto.app.game.util.ColorPrintStream;
 
 public class CollectCommand implements Command {
 
-    Player player;
+    private Player player;
 
     public CollectCommand(Player player) {
         this.player = player;
@@ -17,7 +19,7 @@ public class CollectCommand implements Command {
         Block currentBlock = player.getCurrentPosition();
         Item item = currentBlock.getItems();
         if (null != currentBlock.getNonPlayers() && currentBlock.getNonPlayers().getIsThreat()) {
-            System.out.println("Creature killed you.");
+            ColorPrintStream.printWithColor("Creature killed you.", Color.GREEN, Color.BLACK_BACKGROUND);
             player.setHealth(0);
         } else if (null != item) {
             player.setItem(item);
@@ -25,11 +27,11 @@ public class CollectCommand implements Command {
             if (null != player.getCurrentPosition().getNeighborBlocks()) {
                 player.getCurrentPosition().getNeighborBlocks().setLocked(false);
             }
-            System.out.println(item.getDescription());
-            System.out.println();
+            ColorPrintStream.printWithColor(item.getDescription(), Color.GREEN, Color.BLACK_BACKGROUND);
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
         } else {
-            System.out.println("No items to collect in here.");
-            System.out.println();
+            ColorPrintStream.printWithColor("No items to collect in here.", Color.GREEN, Color.BLACK_BACKGROUND);
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
         }
     }
 }
