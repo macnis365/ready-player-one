@@ -31,25 +31,23 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
             int choice = ScannerSingleton.getIntegerInput();
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
             switch (choice) {
-                case 8: // go neighbour block
-                    command = new EnterBlockCommand(player);
+                case 8:
+                    new EnterBlockCommand(player).execute();
                     break;
-                case 1: // collect item
-                    command = new CollectCommand(player);
+                case 1:
+                    new CollectCommand(player).execute();
                     break;
                 case 3: // explore
                     break;
-                case 5: // kill
-                    command = new KillCommand(player);
+                case 5:
+                    new KillCommand(player).execute();
                     break;
-                case 2:// save game
-                    command = new SaveCommand(theme);
+                case 2:
+                    new SaveCommand(theme).execute();
                 default:
                     ColorPrintStream.printWithColor("Invalid input", Color.GREEN, Color.BLACK_BACKGROUND);
                     break;
             }
-//            null check
-            command.execute();
             if (player.getScore() > 30) {
                 ColorPrintStream.printWithColor(player.name + " : wins the game with score " + theme.getWinScore(), Color.BLACK, Color.GREEN_BACKGROUND);
                 ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
