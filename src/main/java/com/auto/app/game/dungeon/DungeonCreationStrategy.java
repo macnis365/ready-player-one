@@ -42,7 +42,9 @@ public class DungeonCreationStrategy implements ThemeCreatoinStrategy {
         HashMap<Integer, String> options = new HashMap<>();
         options.put(8, "go to neighbor block.");
         options.put(1, "collect item in the block.");
-        options.put(5, "kill the monster/zombie.");
+        options.put(5, "kill the monster.");
+        options.put(2, "save the game");
+        options.put(3, "back to menu");
         return options;
     }
 

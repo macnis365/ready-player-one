@@ -4,6 +4,7 @@ import com.auto.app.game.component.Block;
 import com.auto.app.game.component.Dialogue;
 import com.auto.app.game.component.Player;
 import com.auto.app.game.component.Theme;
+import com.auto.app.game.customexception.GameIllegalStateException;
 import com.auto.app.game.util.ScannerSingleton;
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,7 +26,7 @@ public class DungeonPlayStrategyTest {
 
     @Test
     @PrepareForTest(ScannerSingleton.class)
-    public void testPlay() {
+    public void testPlay() throws GameIllegalStateException {
         Theme theme = Mockito.mock(Theme.class);
         Player player = Mockito.mock(Player.class);
         Block block = Mockito.mock(Block.class);
@@ -44,7 +45,7 @@ public class DungeonPlayStrategyTest {
 
     @Test
     @PrepareForTest(ScannerSingleton.class)
-    public void testPlayWithKill() {
+    public void testPlayWithKill() throws GameIllegalStateException {
         Theme theme = Mockito.mock(Theme.class);
         Player player = Mockito.mock(Player.class);
         Block block = Mockito.mock(Block.class);
@@ -63,7 +64,7 @@ public class DungeonPlayStrategyTest {
 
     @Test
     @PrepareForTest(ScannerSingleton.class)
-    public void testPlayCollectItem() {
+    public void testPlayCollectItem() throws GameIllegalStateException {
         Theme theme = Mockito.mock(Theme.class);
         Player player = Mockito.mock(Player.class);
         Block block = Mockito.mock(Block.class);

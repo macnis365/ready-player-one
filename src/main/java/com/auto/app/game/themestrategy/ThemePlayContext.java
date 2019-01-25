@@ -1,6 +1,7 @@
 package com.auto.app.game.themestrategy;
 
 import com.auto.app.game.component.Theme;
+import com.auto.app.game.customexception.GameIllegalStateException;
 
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ public class ThemePlayContext {
         this.themePlayStrategy = themePlayStrategy;
     }
 
-    public void play(Theme theme) {
+    public void play(Theme theme) throws GameIllegalStateException {
         themePlayStrategy.play(theme);
     }
 }

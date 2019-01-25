@@ -1,6 +1,7 @@
 package com.auto.app;
 
 import com.auto.app.game.component.Theme;
+import com.auto.app.game.customexception.GameIllegalStateException;
 import com.auto.app.game.dungeon.DungeonCreationStrategy;
 import com.auto.app.game.dungeon.DungeonPlayStrategy;
 import com.auto.app.game.themestrategy.ThemCreationContext;
@@ -71,6 +72,9 @@ public class GameWindow {
                     } else {
                         createAndLoad();
                     }
+                } catch (GameIllegalStateException e) {
+                    ColorPrintStream.printWithColor(e.getMessage(), Color.BLACK_BACKGROUND, Color.YELLOW);
+//                    e.getCause();
                 } catch (FileNotFoundException e) {
                     ColorPrintStream.printWithColor("******System error*****", Color.BLACK_BACKGROUND, Color.YELLOW);
 //                    e.getCause();
@@ -86,7 +90,7 @@ public class GameWindow {
         ColorPrintStream.printWithColor("==============================End====================================", Color.GREEN, Color.BLACK_BACKGROUND);
     }
 
-    private void createAndLoad() {
+    private void createAndLoad() throws GameIllegalStateException {
         ThemCreationContext context = new ThemCreationContext();
         context.setThemeCreatoinStrategy(new DungeonCreationStrategy());
         Theme dungeonTheme = context.createTheme();

@@ -2,6 +2,7 @@ package com.auto.app.game.dungeon;
 
 import com.auto.app.game.component.Player;
 import com.auto.app.game.component.Theme;
+import com.auto.app.game.customexception.GameIllegalStateException;
 import com.auto.app.game.event.*;
 import com.auto.app.game.themestrategy.ThemePlayStrategy;
 import com.auto.app.game.util.Color;
@@ -15,7 +16,8 @@ import static com.auto.app.game.util.Constants.INVALID_INPUT_ERROR_MESSAGE;
 
 public class DungeonPlayStrategy implements ThemePlayStrategy {
     @Override
-    public void play(Theme theme) {
+    public void play(Theme theme) throws GameIllegalStateException {
+        Map<String, Command> commandBucket = createCommandBucket(theme);
         Player player = (Player) theme.getPlayer();
         Map<Integer, String> options = theme.getUserOptions();
         ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
@@ -34,19 +36,22 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
             switch (userIntegerChoice) {
                 case 8:
-                    new EnterBlockCommand(player).execute();
+                    commandBucket.get("enterblock").execute();
                     break;
                 case 1:
-                    new CollectCommand(player).execute();
+                    commandBucket.get("collect").execute();
+//                    new CollectCommand(player).execute();
                     break;
                 case 3:
-                    player.setIsAlive(false);
+                    commandBucket.get("goback").execute();
                     break;
                 case 5:
-                    new KillCommand(player).execute();
+                    commandBucket.get("kill").execute();
+//                    new KillCommand(player).execute();
                     break;
                 case 2:
-                    new SaveCommand(theme).execute();
+                    commandBucket.get("save").execute();
+//                    new SaveCommand(theme).execute();
                     break;
                 default:
                     ColorPrintStream.printWithColor(INVALID_INPUT_ERROR_MESSAGE, Color.RED, Color.BLACK_BACKGROUND);
@@ -68,5 +73,19 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
                 break;
             }
         }
+    }
+
+    public Map<String, Command> createCommandBucket(Theme theme) throws GameIllegalStateException {
+        HashMap<String, Command> bucket = new HashMap<String, Command>();
+        if (null == theme || null == theme.getPlayer()) {
+            throw new GameIllegalStateException("No theme or player initialized");
+        }
+        Player player = (Player) theme.getPlayer();
+        bucket.put("kill", new KillCommand(player));
+        bucket.put("enterblock", new EnterBlockCommand(player));
+        bucket.put("goback", new GoBackCommand(player));
+        bucket.put("save", new SaveCommand(theme));
+        bucket.put("collect", new CollectCommand(player));
+        return bucket;
     }
 }
