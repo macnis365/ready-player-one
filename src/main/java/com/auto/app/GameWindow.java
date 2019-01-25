@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class GameWindow {
                     ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
                     ColorPrintStream.printWithColor(">\t", Color.YELLOW, Color.BLACK_BACKGROUND);
                     userChoice = ScannerSingleton.getIntegerInput();
-                    String directoryPath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "/default.ser";
+                    String directoryPath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "/" + DEFAULT_FILENAME;
                     File file = new File(directoryPath);
                     if (!file.isDirectory() && file.exists()) {
                         isGameFileExist = true;
@@ -71,15 +72,15 @@ public class GameWindow {
                         createAndLoad();
                     }
                 } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                    ColorPrintStream.printWithColor("******System error*****", Color.BLACK_BACKGROUND, Color.YELLOW);
+//                    e.getCause();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    ColorPrintStream.printWithColor("******System error*****", Color.BLACK_BACKGROUND, Color.YELLOW);
+//                    e.getCause();
                 }
             } else {
-//                Mario
                 themeStart = false;
             }
-//            set themeStart false to end game
         }
 
         ColorPrintStream.printWithColor("==============================End====================================", Color.GREEN, Color.BLACK_BACKGROUND);

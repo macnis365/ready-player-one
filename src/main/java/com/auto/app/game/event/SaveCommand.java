@@ -10,6 +10,8 @@ import java.io.ObjectOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
+import static com.auto.app.game.util.Constants.DEFAULT_FILENAME;
+
 public class SaveCommand implements Command {
     private Theme theme;
 
@@ -19,10 +21,10 @@ public class SaveCommand implements Command {
 
     @Override
     public void execute() {
-       /* ColorPrintStream.printWithColor("current path ***********  " + getClass().getProtectionDomain().getCodeSource().getLocation().getPath(), Color.RED, Color.BLACK_BACKGROUND);*/
+        /* ColorPrintStream.printWithColor("current path ***********  " + getClass().getProtectionDomain().getCodeSource().getLocation().getPath(), Color.RED, Color.BLACK_BACKGROUND);*/
         try {
             String directoryPath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-            ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(URLDecoder.decode(directoryPath + "/default.ser", "UTF-8")));
+            ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(URLDecoder.decode(directoryPath + "/" + DEFAULT_FILENAME, "UTF-8")));
             objectOut.writeObject(theme);
             objectOut.close();
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);

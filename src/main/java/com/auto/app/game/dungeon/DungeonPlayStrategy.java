@@ -39,7 +39,8 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
                 case 1:
                     new CollectCommand(player).execute();
                     break;
-                case 3: // explore
+                case 3:
+                    player.setIsAlive(false);
                     break;
                 case 5:
                     new KillCommand(player).execute();
@@ -60,7 +61,7 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
             }
             if (player.getHealth() == 0) {
                 ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
-                ColorPrintStream.printWithColor("Player one got killed! better luck next time", Color.RED, Color.BLACK_BACKGROUND);
+                ColorPrintStream.printWithColor(player.getName() + " killed! better luck next time", Color.RED, Color.BLACK_BACKGROUND);
                 ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
                 ColorPrintStream.printWithColor("Going back to menu.", Color.GREEN, Color.BLACK_BACKGROUND);
                 ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
