@@ -9,72 +9,39 @@
     <version>1.0-SNAPSHOT</version>
 
     <name>ready-player-one</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <!--
-                <testng.version>6.14.3</testng.version>
-        -->
-        <junit4.version>4.12</junit4.version>
-        <mockito-core.version>2.19.0</mockito-core.version>
-        <powermock.version>2.0.0-beta.5</powermock.version>
+        <junit4.version>4.11</junit4.version>
+        <mockito-core.version>2.0.5-beta</mockito-core.version>
+        <powermock.version>1.6.2</powermock.version>
         <java.version>8</java.version>
     </properties>
 
     <dependencies>
-        <!--       <dependency>
-                   <groupId>junit</groupId>
-                   <artifactId>junit</artifactId>
-                   <version>${junit4.version}</version>
-                   <scope>test</scope>
-               </dependency>
-               &lt;!&ndash; PowerMock JUnit 4.4+ Module &ndash;&gt;
-               <dependency>
-                   <groupId>org.powermock</groupId>
-                   <artifactId>powermock-module-junit4</artifactId>
-                   <version>1.6.5</version>
-                   <scope>test</scope>
-               </dependency>
-               &lt;!&ndash; PowerMock JUnit 4.4+ Module &ndash;&gt;
-               <dependency>
-                   <groupId>org.powermock</groupId>
-                   <artifactId>powermock-api-mockito2</artifactId>
-                   <version>1.6.5</version>
-                   <scope>test</scope>
-               </dependency>
-               &lt;!&ndash; https://mvnrepository.com/artifact/org.mockito/mockito-all &ndash;&gt;
-               <dependency>
-                   <groupId>org.mockito</groupId>
-                   <artifactId>mockito-core</artifactId>
-                   <version>1.10.19</version>
-                   <scope>test</scope>
-               </dependency>-->
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>${junit4.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>2.0.5-beta</version>
+            <version>${mockito-core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-api-mockito</artifactId>
-            <version>1.6.2</version>
+            <version>${powermock.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-module-junit4</artifactId>
-            <version>1.6.2</version>
+            <version>${powermock.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -103,6 +70,14 @@
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>3.0.2</version>
+                    <configuration>
+                        <archive>
+                            <index>true</index>
+                            <manifest>
+                                <mainClass>com.auto.app.GameWindow</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
