@@ -11,17 +11,13 @@ public class ScannerSingleton {
         scanner = new Scanner(System.in);
     }
 
-    private static class InputOutptHelper {
+    private static class InputOutputHelper {
         private static final ScannerSingleton INPUT_OUTPUT = new ScannerSingleton();
-    }
-
-    public static Scanner getInstance() {
-        return InputOutptHelper.INPUT_OUTPUT.scanner;
     }
 
     public static int getIntegerInput() {
         validateInputForInteger();
-        return InputOutptHelper.INPUT_OUTPUT.scanner.nextInt();
+        return InputOutputHelper.INPUT_OUTPUT.scanner.nextInt();
     }
 
     private static void validateInputForInteger() {
@@ -34,14 +30,10 @@ public class ScannerSingleton {
     }
 
     public static boolean hasNextInteger() {
-        return InputOutptHelper.INPUT_OUTPUT.scanner.hasNextInt();
+        return InputOutputHelper.INPUT_OUTPUT.scanner.hasNextInt();
     }
 
     public static String getStringInput() {
-        return InputOutptHelper.INPUT_OUTPUT.scanner.next();
-    }
-
-    public static boolean hasNextString() {
-        return InputOutptHelper.INPUT_OUTPUT.scanner.hasNext();
+        return InputOutputHelper.INPUT_OUTPUT.scanner.next();
     }
 }

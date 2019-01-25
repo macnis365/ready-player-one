@@ -17,11 +17,10 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.auto.app.game.util.Constants.*;
+
 public class GameWindow {
 
-    public static final String NEW_LINE = "\n";
-    public static final String LOAD_MASSAGE = "Do you want to load the game" + NEW_LINE + "1. Yes" + NEW_LINE + "2. No" + NEW_LINE;
-    public static final String LOAD_WARNING_MESSAGE = "did not find any saved game.";
     private List<Theme> themes = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -90,9 +89,9 @@ public class GameWindow {
 
     public List<Theme> loadTheme() {
         Theme theme1 = new Theme.ThemeBuilder().buildWithName("Dungeon and Dragon").build();
-        Theme theme2 = new Theme.ThemeBuilder().buildWithName("Super Mario").build();
+//        Theme theme2 = new Theme.ThemeBuilder().buildWithName("Super Mario").build();
         themes.add(theme1);
-        themes.add(theme2);
+//        themes.add(theme2);
         return themes;
     }
 
