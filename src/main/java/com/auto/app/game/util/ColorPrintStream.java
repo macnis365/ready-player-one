@@ -14,8 +14,9 @@ public class ColorPrintStream {
 
     public static void printBackgroundColorWithNoMessage(Color background) {
         if (!WINDOWS_ENVIRONMENT) {
-            System.out.println(background);
+            System.out.print(background);
         }
+        System.out.println();
     }
 
     public static void printBackgroundColorWithNoMessage(Color background, int line) {

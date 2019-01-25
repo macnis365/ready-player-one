@@ -56,6 +56,14 @@ public class Player extends Character implements Serializable {
         this.isAlive = isAlive;
     }
 
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        this.experience = experience;
+    }
+
     public static class PlayerBuilder {
         private String name;
         private int health;

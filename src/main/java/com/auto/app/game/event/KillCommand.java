@@ -22,6 +22,7 @@ public class KillCommand implements Command {
             currentBlock.setNonPlayers(null);
             if (null != player.getCurrentPosition().getNeighborBlocks()) {
                 player.getCurrentPosition().getNeighborBlocks().setLocked(false);
+                player.setExperience(player.getExperience() + 1);
             }
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
             ColorPrintStream.printWithColor("Eliminated the threat.", Color.GREEN, Color.BLACK_BACKGROUND);
