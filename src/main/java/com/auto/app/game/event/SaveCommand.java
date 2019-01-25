@@ -4,11 +4,8 @@ import com.auto.app.game.component.Theme;
 import com.auto.app.game.util.Color;
 import com.auto.app.game.util.ColorPrintStream;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 
 import static com.auto.app.game.util.Constants.DEFAULT_FILENAME;
 
