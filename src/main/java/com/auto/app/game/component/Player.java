@@ -2,6 +2,7 @@ package com.auto.app.game.component;
 
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Player extends Character implements Serializable {
     private static final long serialVersionUID = 10L;
@@ -61,6 +62,7 @@ public class Player extends Character implements Serializable {
         private int score;
         private Block currentPosition;
         private Item item;
+        private String aboutMe;
         private boolean isAlive;
 
         public PlayerBuilder() {
@@ -87,6 +89,11 @@ public class Player extends Character implements Serializable {
             return this;
         }
 
+        public PlayerBuilder withAboutMe(String aboutMe) {
+            this.aboutMe = aboutMe;
+            return this;
+        }
+
         public PlayerBuilder withItem(Item item) {
             this.item = item;
             return this;
@@ -105,8 +112,28 @@ public class Player extends Character implements Serializable {
             player.currentPosition = this.currentPosition;
             player.health = this.health;
             player.isAlive = this.isAlive;
+            player.aboutMe = this.aboutMe;
             return player;
         }
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Player)) return false;
+        if (!super.equals(o)) return false;
+        Player player = (Player) o;
+        return score == player.score &&
+                health == player.health &&
+                experience == player.experience &&
+                Objects.equals(currentPosition, player.currentPosition) &&
+                Objects.equals(item, player.item);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(super.hashCode(), score, health, currentPosition, item, experience);
     }
 }

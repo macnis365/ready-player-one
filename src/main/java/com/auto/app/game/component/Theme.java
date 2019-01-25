@@ -5,6 +5,7 @@ import com.auto.app.game.event.Command;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Theme implements Serializable {
     private static final long serialVersionUID = 20L;
@@ -70,5 +71,22 @@ public class Theme implements Serializable {
             return theme;
         }
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Theme)) return false;
+        Theme theme = (Theme) o;
+        return Objects.equals(name, theme.name) &&
+                Objects.equals(descriptions, theme.descriptions) &&
+                Objects.equals(player, theme.player) &&
+                Objects.equals(userOptions, theme.userOptions);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, descriptions, player, userOptions);
     }
 }

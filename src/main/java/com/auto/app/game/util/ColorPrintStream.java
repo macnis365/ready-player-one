@@ -2,7 +2,7 @@ package com.auto.app.game.util;
 
 public class ColorPrintStream {
 
-    static final boolean WINDOWS_ENVIRONMENT = System.getProperty("os.name").startsWith("Linux");
+    static final boolean WINDOWS_ENVIRONMENT = System.getProperty("os.name").startsWith("Windows");
 
     public static void printWithColor(String message, Color background, Color text) {
         if (!WINDOWS_ENVIRONMENT) {
