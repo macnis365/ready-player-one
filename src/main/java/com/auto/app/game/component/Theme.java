@@ -11,7 +11,6 @@ public class Theme implements Serializable {
 
     private String name;
     private String descriptions;
-    private int winScore;//win condition
     private Character player;
     private Map<Integer, String> userOptions;
 
@@ -21,14 +20,6 @@ public class Theme implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getWinScore() {
-        return winScore;
-    }
-
-    public void setWinScore(int winScore) {
-        this.winScore = winScore;
     }
 
     public Character getPlayer() {
@@ -49,7 +40,6 @@ public class Theme implements Serializable {
 
     public static class ThemeBuilder {
         private String name;
-        private int winScore;
         private Character player;
         private Map<Integer, String> userOptions;
 
@@ -59,11 +49,6 @@ public class Theme implements Serializable {
 
         public ThemeBuilder buildWithName(String name) {
             this.name = name;
-            return this;
-        }
-
-        public ThemeBuilder buildWithWinScore(int winScore) {
-            this.winScore = winScore;
             return this;
         }
 
@@ -80,7 +65,6 @@ public class Theme implements Serializable {
         public Theme build() {
             Theme theme = new Theme();
             theme.player = this.player;
-            theme.winScore = this.winScore;
             theme.name = this.name;
             theme.userOptions = this.userOptions;
             return theme;

@@ -29,25 +29,12 @@ public class SaveCommandTest {
         options.put(8, "go to neighbor block.");
         options.put(1, "collect item in the block.");
         options.put(5, "kill the monster/zombie.");
-        theme = new Theme.ThemeBuilder().buildWithName("dungeon and dragon").buildWithUserOptions(options).buildWithPlayer(player).buildWithWinScore(100).build();
+        theme = new Theme.ThemeBuilder().buildWithName("dungeon and dragon").buildWithUserOptions(options).buildWithPlayer(player).build();
         command = new SaveCommand(theme);
     }
 
     @Test
     public void testExecute() {
         command.execute();
-    }
-
-    @Test
-    public void testLoad() {
-        try {
-            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(URLDecoder.decode("G:\\Job Quest abroad\\game CLI\\testsave\\", "UTF-8") + "save.ser"));
-            Theme theme = (Theme) inputStream.readObject();
-            theme.getPlayer();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 }

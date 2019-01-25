@@ -35,7 +35,7 @@ public class DungeonCreationStrategyTest {
         Assert.assertNotNull(block);
         Assert.assertNull(block.getNonPlayers());
         Assert.assertNotNull(block.getDialogue());
-        Assert.assertNull(block.getItems());
+        Assert.assertNotNull(block.getItems());
         Assert.assertEquals(true, block.isLocked());
         Assert.assertEquals("Chapter 3", block.getName());
     }

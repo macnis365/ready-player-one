@@ -25,7 +25,7 @@ public class KillCommand implements Command {
             }
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
             ColorPrintStream.printWithColor("Eliminated the threat.", Color.GREEN, Color.BLACK_BACKGROUND);
-            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
         } else {
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
             ColorPrintStream.printWithColor("No threat to kill", Color.GREEN, Color.BLACK_BACKGROUND);

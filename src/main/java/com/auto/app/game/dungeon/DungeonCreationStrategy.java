@@ -17,7 +17,7 @@ public class DungeonCreationStrategy implements ThemeCreatoinStrategy {
     @Override
     public Theme createTheme() {
         Character player = createPlayer();
-        return new Theme.ThemeBuilder().buildWithName("Go Dungeon........").buildWithWinScore(10).buildWithPlayer(player).buildWithUserOptions(createUserOption()).build();
+        return new Theme.ThemeBuilder().buildWithName("Go Dungeon........").buildWithPlayer(player).buildWithUserOptions(createUserOption()).build();
     }
 
     public Character createPlayer() {
