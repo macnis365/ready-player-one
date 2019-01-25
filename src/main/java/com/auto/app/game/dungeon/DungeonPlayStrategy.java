@@ -6,6 +6,7 @@ import com.auto.app.game.event.*;
 import com.auto.app.game.themestrategy.ThemePlayStrategy;
 import com.auto.app.game.util.Color;
 import com.auto.app.game.util.ColorPrintStream;
+import com.auto.app.game.util.ScannerSingleton;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Scanner;
 
 public class DungeonPlayStrategy implements ThemePlayStrategy {
     @Override
-    public void play(Theme theme, Scanner input) {
+    public void play(Theme theme) {
         Player player = (Player) theme.getPlayer();
         Map<Integer, String> options = theme.getUserOptions();
         Command command = null;
@@ -28,7 +29,7 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
             }
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
             ColorPrintStream.printWithColor(">\t", Color.YELLOW, Color.BLACK_BACKGROUND);
-            int choice = input.nextInt();
+            int choice = ScannerSingleton.getIntegerInput();
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
             switch (choice) {
                 case 8: // go neighbour block

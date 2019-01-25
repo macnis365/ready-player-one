@@ -11,7 +11,7 @@ public class ThemCreationContext {
         this.themeCreatoinStrategy = themeCreatoinStrategy;
     }
 
-    public Theme createTheme(Scanner scanner) {
-        return themeCreatoinStrategy.createTheme(scanner);
+    public Theme createTheme() {
+        return themeCreatoinStrategy.createTheme();
     }
 }

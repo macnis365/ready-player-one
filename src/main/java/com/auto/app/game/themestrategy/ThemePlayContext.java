@@ -11,7 +11,7 @@ public class ThemePlayContext {
         this.themePlayStrategy = themePlayStrategy;
     }
 
-    public void play(Theme theme, Scanner scanner) {
-        themePlayStrategy.play(theme, scanner);
+    public void play(Theme theme) {
+        themePlayStrategy.play(theme);
     }
 }

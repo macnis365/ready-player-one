@@ -29,7 +29,6 @@ public class SaveCommandTest {
         options.put(8, "go to neighbor block.");
         options.put(1, "collect item in the block.");
         options.put(5, "kill the monster/zombie.");
-        /*Player player = new Player.PlayerBuilder().withIsAlive(true).withCurrentPosition(block).withScore(0).withName("Dave").build();*/
         theme = new Theme.ThemeBuilder().buildWithName("dungeon and dragon").buildWithUserOptions(options).buildWithPlayer(player).buildWithWinScore(100).build();
         command = new SaveCommand(theme);
     }
