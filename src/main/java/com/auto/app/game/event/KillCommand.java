@@ -3,6 +3,8 @@ package com.auto.app.game.event;
 import com.auto.app.game.component.Block;
 import com.auto.app.game.component.NonPlayer;
 import com.auto.app.game.component.Player;
+import com.auto.app.game.util.Color;
+import com.auto.app.game.util.ColorPrintStream;
 
 public class KillCommand implements Command {
     Player player;
@@ -21,9 +23,13 @@ public class KillCommand implements Command {
             if (null != player.getCurrentPosition().getNeighborBlocks()) {
                 player.getCurrentPosition().getNeighborBlocks().setLocked(false);
             }
-            System.out.println("Eliminated the threat.");
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+            ColorPrintStream.printWithColor("Eliminated the threat.", Color.GREEN, Color.BLACK_BACKGROUND);
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
         } else {
-            System.out.println("No threat to kill");
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+            ColorPrintStream.printWithColor("No threat to kill", Color.GREEN, Color.BLACK_BACKGROUND);
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
         }
     }
 }

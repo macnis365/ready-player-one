@@ -4,7 +4,8 @@ public class ColorPrintStream {
 
     public static void printWithColor(String message, Color background, Color text) {
         System.out.print(text);
-        System.out.println(background + message);
+        System.out.print(background);
+        System.out.println(message);
     }
 
     public static void printTextColor(String message, Color text) {
@@ -19,5 +20,13 @@ public class ColorPrintStream {
 
     public static void printBackgroundColorWithNoMessage(Color background) {
         System.out.println(background);
+    }
+
+    public static void setBackgroundColor(Color backgroundColor) {
+        System.out.print(backgroundColor);
+    }
+
+    public static void setTextColor(Color textColor) {
+        System.out.print(textColor);
     }
 }

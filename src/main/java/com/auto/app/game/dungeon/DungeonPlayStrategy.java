@@ -19,11 +19,18 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
         Command command = null;
         ColorPrintStream.printWithColor(player.getCurrentPosition().getDialogue().getDirection(), Color.GREEN, Color.BLACK_BACKGROUND);
         ColorPrintStream.printWithColor(player.getCurrentPosition().getDialogue().getIntroduction(), Color.GREEN, Color.BLACK_BACKGROUND);
+        ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+        ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
         while (player.getIsAlive()) {
             for (HashMap.Entry action : options.entrySet()) {
-                ColorPrintStream.printWithColor(action.getKey() + ". " + action.getValue(), Color.GREEN, Color.BLACK_BACKGROUND);
+                ColorPrintStream.printWithColor(action.getKey() + ". " + action.getValue(), Color.CYAN, Color.BLACK_BACKGROUND);
             }
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+            ColorPrintStream.setBackgroundColor(Color.BLACK_BACKGROUND);
+            ColorPrintStream.setTextColor(Color.YELLOW);
+            System.out.print(">\t");
             int choice = input.nextInt();
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
             switch (choice) {
                 case 8: // go neighbour block
                     command = new EnterBlockCommand(player);
@@ -45,7 +52,7 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
 //            null check
             command.execute();
             if (player.getScore() > 30) {
-                ColorPrintStream.printWithColor(player.name + " : wins the game with score " + theme.getWinScore(), Color.GREEN, Color.BLACK_BACKGROUND);
+                ColorPrintStream.printWithColor(player.name + " : wins the game with score " + theme.getWinScore(), Color.BLACK, Color.GREEN_BACKGROUND);
                 ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
                 ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
                 ColorPrintStream.printWithColor("Going back to menu.", Color.GREEN, Color.BLACK_BACKGROUND);
@@ -53,7 +60,9 @@ public class DungeonPlayStrategy implements ThemePlayStrategy {
                 break;
             }
             if (player.getHealth() == 0) {
-                ColorPrintStream.printWithColor("Player one got killed! better luck next time", Color.GREEN, Color.BLACK_BACKGROUND);
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+                ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+                ColorPrintStream.printWithColor("Player one got killed! better luck next time", Color.RED, Color.BLACK_BACKGROUND);
                 ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
                 ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
                 ColorPrintStream.printWithColor("Going back to menu.", Color.GREEN, Color.BLACK_BACKGROUND);
