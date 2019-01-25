@@ -25,7 +25,9 @@ public class SaveCommand implements Command {
             ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(URLDecoder.decode("G:\\Job Quest abroad\\game CLI\\testsave\\", "UTF-8") + "save.ser"));
             objectOut.writeObject(theme);
             objectOut.close();
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
             ColorPrintStream.printWithColor("Game successfully saved", Color.GREEN, Color.BLACK_BACKGROUND);
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -5,12 +5,12 @@ public class ColorPrintStream {
     public static void printWithColor(String message, Color background, Color text) {
         System.out.print(text);
         System.out.print(background);
-        System.out.println(message);
+        System.out.print(message);
     }
 
     public static void printTextColor(String message, Color text) {
         System.out.print(text);
-        System.out.println(message);
+        System.out.print(message);
     }
 
     public static void printBackgroundColor(String message, Color background) {
@@ -20,6 +20,12 @@ public class ColorPrintStream {
 
     public static void printBackgroundColorWithNoMessage(Color background) {
         System.out.println(background);
+    }
+
+    public static void printBackgroundColorWithNoMessage(Color background, int line) {
+        for (int index = 0; index < line; index++) {
+            System.out.println(background);
+        }
     }
 
     public static void setBackgroundColor(Color backgroundColor) {

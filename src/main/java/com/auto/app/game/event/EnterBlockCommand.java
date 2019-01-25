@@ -21,12 +21,10 @@ public class EnterBlockCommand implements Command {
             ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
         } else if (null != currentBlock.getNeighborBlocks()) {
             player.setCurrentPosition(currentBlock.getNeighborBlocks());
-            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
-            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
             ColorPrintStream.printWithColor(player.getCurrentPosition().getDialogue().getDirection(), Color.GREEN, Color.BLACK_BACKGROUND);
             ColorPrintStream.printWithColor(player.getCurrentPosition().getDialogue().getIntroduction(), Color.GREEN, Color.BLACK_BACKGROUND);
-            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
-            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND);
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
         } else {
             player.setHealth(0);
         }

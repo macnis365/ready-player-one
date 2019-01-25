@@ -16,6 +16,9 @@ import java.util.Scanner;
 
 public class GameWindow {
 
+    public static final String NEW_LINE = "\n";
+    public static final String LOAD_MASSAGE = "Do you want to load the game" + NEW_LINE + "1. Yes" + NEW_LINE + "2. No" + NEW_LINE;
+    public static final String LOAD_WARNING_MESSAGE = "did not find any saved game.";
     private List<Theme> themes = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
 
@@ -30,16 +33,20 @@ public class GameWindow {
         themeStart = true;
         themes = loadTheme();
         while (themeStart) {
-            ColorPrintStream.printWithColor("List of Themes:", Color.CYAN, Color.BLACK_BACKGROUND);
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 2);
+            ColorPrintStream.printWithColor("List of Themes:" + NEW_LINE, Color.CYAN, Color.BLACK_BACKGROUND);
             for (int index = 0; index < themes.size(); index++) {
                 System.out.println(index + 1 + " - " + themes.get(index).getName());
             }
+            ColorPrintStream.printBackgroundColorWithNoMessage(Color.BLACK_BACKGROUND, 1);
+            ColorPrintStream.printWithColor(">\t", Color.YELLOW, Color.BLACK_BACKGROUND);
             int userChoice = scanner.nextInt();
             if (userChoice > 0 && themes.size() >= userChoice &&
                     "Dungeon and Dragon".equals(themes.get(userChoice - 1).getName())) {
                 boolean check;
                 try {
-                    ColorPrintStream.printWithColor("Do you want to load the game\n" + "1. Yes\n" + "2. No\n", Color.CYAN, Color.BLACK_BACKGROUND);
+                    ColorPrintStream.printWithColor(LOAD_MASSAGE, Color.CYAN, Color.BLACK_BACKGROUND);
+                    ColorPrintStream.printWithColor(">\t", Color.YELLOW, Color.BLACK_BACKGROUND);
                     userChoice = scanner.nextInt();
                     check = new File(URLDecoder.decode("G:\\Job Quest abroad\\game CLI\\testsave\\" + "save.ser", "UTF-8")).exists();
                     if (check && 1 == userChoice) {
@@ -49,7 +56,7 @@ public class GameWindow {
                         themePlayContext.setThemePlayStrategy(new DungeonPlayStrategy());
                         themePlayContext.play(theme, scanner);
                     } else if (!check && 1 == userChoice) {
-                        System.out.println("did not find any saved game.");
+                        System.out.println(LOAD_WARNING_MESSAGE);
                         createAndLoad();
                     } else {
                         createAndLoad();
