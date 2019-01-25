@@ -10,7 +10,6 @@ import com.auto.app.game.util.ScannerSingleton;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class DungeonPlayStrategy implements ThemePlayStrategy {
     @Override
